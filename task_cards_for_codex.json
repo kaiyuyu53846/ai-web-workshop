@@ -1,0 +1,433 @@
+{
+  "courseTitle": "AI 協作建站實作課",
+  "courseGoal": "讓每位學員完成一個屬於自己的簡單網站，並且在手機與電腦使用相同 Wi-Fi 時，可以用手機開啟自己電腦上的網站。",
+  "constraints": {
+    "allowed": [
+      "VS Code",
+      "Node.js",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Express"
+    ],
+    "notAllowed": [
+      "React",
+      "Vue",
+      "TypeScript",
+      "資料庫",
+      "登入系統",
+      "雲端部署",
+      "API 串接",
+      "複雜套件"
+    ]
+  },
+  "suggestedProjectStructure": [
+    "my-website/",
+    "├─ package.json",
+    "├─ server.js",
+    "└─ public/",
+    "   ├─ index.html",
+    "   ├─ style.css",
+    "   └─ script.js"
+  ],
+  "antiScopeCreepReminder": {
+    "forbiddenTechnologies": [
+      "React",
+      "Vue",
+      "Next.js",
+      "TypeScript",
+      "Tailwind",
+      "Bootstrap",
+      "MongoDB",
+      "Firebase",
+      "Supabase",
+      "Login",
+      "API",
+      "Cloud deployment",
+      "Vercel",
+      "Netlify",
+      "Docker"
+    ],
+    "correctionPrompt": "請重新回答。這堂課只允許使用 Node.js、Express、HTML、CSS、JavaScript。不要加入其他框架、資料庫、API、雲端部署或登入系統。請提供適合初學者的簡單版本。"
+  },
+  "taskCards": [
+    {
+      "id": "stage-1-start-website",
+      "stage": 1,
+      "title": "任務卡 1：啟動網站",
+      "shortTitle": "啟動網站",
+      "description": "建立一個最基本的 Node.js + Express 網站，並且能在電腦瀏覽器中開啟。",
+      "imageUrl": "",
+      "estimatedMinutes": "30-40",
+      "minimumPassLine": "電腦看得到網站",
+      "goal": "讓學員建立一個最基本的 Node.js + Express 網站，確認 Node.js 可以正常執行、專案資料夾建立正確、Express 伺服器可以啟動，並且瀏覽器可以看到自己的網頁。完成後可在電腦瀏覽器輸入 http://localhost:3000 並看到自己的網頁。",
+      "fixedPrompt": "你是一位程式教學助教，請用完全初學者可以理解的方式，帶我一步一步建立一個最簡單的 Node.js + Express 網站。\n\n請嚴格遵守以下限制：\n1. 只能使用 Node.js、Express、HTML、CSS、JavaScript。\n2. 不要使用 React、Vue、TypeScript。\n3. 不要使用資料庫。\n4. 不要使用雲端部署。\n5. 不要加入登入系統。\n6. 不要安裝 Express 以外的套件。\n7. 請使用 Windows + VS Code 的情境說明。\n8. 每一步都要清楚告訴我：\n   - 要在哪裡操作\n   - 要輸入什麼指令\n   - 要建立什麼檔案\n   - 每個檔案要放什麼內容\n\n請幫我建立以下固定結構：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n最後請讓我可以在瀏覽器輸入 http://localhost:3000，看到網頁顯示「Hello My Website」。\n\n請不要一次解釋太多理論，請用「步驟 1、步驟 2、步驟 3」的方式帶我完成。",
+      "acceptanceCriteria": [
+        "VS Code 中有 my-website 資料夾",
+        "my-website 裡有 server.js",
+        "my-website 裡有 package.json",
+        "my-website 裡有 public 資料夾",
+        "public 資料夾裡有 index.html、style.css、script.js",
+        "終端機執行 node server.js 後沒有紅色錯誤",
+        "瀏覽器輸入 http://localhost:3000 可以看到網站",
+        "網頁上有出現 Hello My Website"
+      ],
+      "expectedOutput": "Hello My Website",
+      "advancedChallenges": [
+        {
+          "level": "Basic",
+          "title": "完成基本網站啟動",
+          "goal": "成功在 localhost:3000 看到 Hello My Website",
+          "prompt": "",
+          "criteria": [
+            "網站可以啟動",
+            "瀏覽器可以開啟",
+            "畫面有文字"
+          ]
+        },
+        {
+          "level": "Plus",
+          "title": "改成自己的網站名稱",
+          "goal": "把首頁文字改成自己的網站名稱。",
+          "prompt": "我已經成功建立 Node.js + Express 網站，並且可以在 localhost:3000 看到 Hello My Website。\n\n現在請教我如何把首頁文字改成我自己的網站名稱。\n\n限制：\n- 只修改 index.html\n- 不要改 server.js\n- 不要加入新的套件\n- 請一步一步告訴我該改哪一行",
+          "criteria": [
+            "首頁不再是 Hello My Website",
+            "首頁改成自己的網站名稱"
+          ]
+        },
+        {
+          "level": "Challenge",
+          "title": "加入簡單版面",
+          "goal": "讓網站看起來像一個真正的首頁，包含主標題、副標題、自我介紹、按鈕與簡單背景色。",
+          "prompt": "我已經有一個可以在 localhost:3000 開啟的 Node.js + Express 網站。\n\n目前檔案結構是：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n請幫我把首頁設計成一個簡單的個人網站首頁。\n\n限制：\n- 只能修改 index.html 和 style.css\n- 不要修改 server.js\n- 不要使用 React、Vue、TypeScript\n- 不要使用外部套件\n- 不要使用網路圖片\n- 請提供完整的 index.html 和 style.css 程式碼\n\n首頁需要包含：\n1. 我的網站標題\n2. 一段簡短自我介紹\n3. 一個按鈕\n4. 簡單乾淨的排版\n5. 適合初學者理解的 CSS",
+          "criteria": [
+            "首頁有標題",
+            "首頁有自我介紹",
+            "首頁有按鈕",
+            "網站看起來比純文字更完整"
+          ]
+        }
+      ],
+      "commonErrors": [
+        {
+          "id": "stage-1-error-1",
+          "symptom": "node 不是內部或外部命令",
+          "possibleCause": "Node.js 沒有安裝成功，或安裝後沒有重新開啟終端機。",
+          "helpPrompt": "我在 Windows 的 VS Code 終端機輸入 node -v，但出現「node 不是內部或外部命令」。\n\n請用初學者可以理解的方式，教我如何確認 Node.js 是否安裝成功，以及如何重新開啟 VS Code 終端機。"
+        },
+        {
+          "id": "stage-1-error-2",
+          "symptom": "找不到 package.json",
+          "possibleCause": "終端機目前所在位置不在 my-website 資料夾裡。",
+          "helpPrompt": "我在 VS Code 終端機執行 npm install express，但是出現找不到 package.json 或路徑相關錯誤。\n\n請教我如何確認目前終端機所在資料夾，並且如何切換到 my-website 資料夾。\n請使用 Windows 指令說明。"
+        },
+        {
+          "id": "stage-1-error-3",
+          "symptom": "Cannot find module 'express'",
+          "possibleCause": "Express 沒有安裝成功。",
+          "helpPrompt": "我執行 node server.js 時出現 Cannot find module 'express'。\n\n我的專案是 Node.js + Express 網站，資料夾名稱是 my-website。\n\n請一步一步教我如何修正，包含：\n1. 如何確認目前位置\n2. 如何安裝 express\n3. 如何重新啟動 server.js"
+        },
+        {
+          "id": "stage-1-error-4",
+          "symptom": "瀏覽器打不開 localhost:3000",
+          "possibleCause": "server.js 沒有啟動，或終端機已經停止伺服器。",
+          "helpPrompt": "我已經建立 Node.js + Express 網站，但是瀏覽器輸入 http://localhost:3000 打不開。\n\n請一步一步幫我檢查：\n1. server.js 是否正在執行\n2. 終端機有沒有錯誤訊息\n3. port 3000 是否被占用\n4. 應該如何重新啟動網站"
+        }
+      ]
+    },
+    {
+      "id": "stage-2-customize-content",
+      "stage": 2,
+      "title": "任務卡 2：修改網站內容",
+      "shortTitle": "修改網站內容",
+      "description": "把網站從範例頁面改成屬於自己的個人網站。",
+      "imageUrl": "",
+      "estimatedMinutes": "30-40",
+      "minimumPassLine": "網站有自己的內容",
+      "goal": "讓學員把網站從範例頁面改成屬於自己的網站，理解 index.html 控制網站內容、style.css 控制網站外觀，並能透過 AI 協助改文字、排版與顏色。",
+      "fixedPrompt": "你是一位程式教學助教。\n\n我已經完成一個 Node.js + Express 網站，並且可以在 http://localhost:3000 開啟。\n\n我的網站資料夾結構是：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n現在我想把這個網站改成「我的個人網站」。\n\n請嚴格遵守以下限制：\n1. 只能修改 public/index.html 和 public/style.css。\n2. 不要修改 server.js。\n3. 不要使用 React、Vue、TypeScript。\n4. 不要使用資料庫。\n5. 不要使用 API。\n6. 不要安裝任何新套件。\n7. 請提供完整的 index.html 和 style.css 程式碼。\n8. 程式碼要適合初學者閱讀，不要太複雜。\n\n我的個人網站需要包含：\n1. 網站標題\n2. 我的名字或暱稱\n3. 一段自我介紹\n4. 三個興趣或特色\n5. 一個簡單按鈕\n6. 乾淨、清楚、適合手機瀏覽的排版\n\n請先給我一版簡單、安全、不複雜的版本。",
+      "acceptanceCriteria": [
+        "網站標題已經改成自己的內容",
+        "首頁有自己的名字或暱稱",
+        "有一段自我介紹",
+        "有三個興趣、特色或作品項目",
+        "有簡單排版，不是純文字堆在一起",
+        "修改後網站仍然可以在 localhost:3000 開啟",
+        "終端機沒有紅色錯誤"
+      ],
+      "verificationMethod": "打開瀏覽器，彼此看隔壁同學的網站，確認每個人的網站內容不同。",
+      "advancedChallenges": [
+        {
+          "level": "Basic",
+          "title": "改文字內容",
+          "goal": "只修改網站上的文字內容，包含網站標題、名字或暱稱、自我介紹、興趣列表。",
+          "prompt": "我想先完成最基本的個人網站內容修改。\n\n請幫我修改 index.html，讓網站包含：\n1. 我的名字\n2. 一句歡迎語\n3. 一段自我介紹\n4. 三個興趣\n\n限制：\n- 只修改 index.html\n- 不要修改 style.css\n- 不要修改 server.js\n- 不要加入任何複雜功能\n- 請提供完整 index.html",
+          "criteria": [
+            "首頁文字已經不是範例文字",
+            "內容可以看出是自己的網站"
+          ]
+        },
+        {
+          "level": "Plus",
+          "title": "修改外觀風格",
+          "goal": "讓網站有基本視覺設計，可調整背景色、字體大小、區塊間距、卡片效果與按鈕樣式。",
+          "prompt": "我已經完成個人網站的文字內容。\n\n現在請幫我修改 style.css，讓網站看起來更乾淨、有設計感。\n\n限制：\n- 只修改 style.css\n- 不要修改 server.js\n- 不要使用外部 CSS 框架\n- 不要使用 Tailwind\n- 不要使用 Bootstrap\n- CSS 要適合初學者理解\n\n請幫我加入：\n1. 背景色\n2. 置中的主要內容區塊\n3. 卡片式區塊\n4. 好看的按鈕\n5. 手機上也能正常閱讀的排版\n\n請提供完整 style.css。",
+          "criteria": [
+            "網站有背景色",
+            "內容區塊有排版",
+            "按鈕有樣式",
+            "手機或縮小瀏覽器時仍能閱讀"
+          ]
+        },
+        {
+          "level": "Challenge",
+          "title": "建立個人作品首頁",
+          "goal": "把網站做得像一個小型作品集，包含個人介紹區、興趣區、作品區、聯絡方式區與頁面導覽按鈕。",
+          "prompt": "我想把目前的個人網站升級成一個簡單作品集首頁。\n\n請幫我設計 index.html 和 style.css。\n\n限制：\n- 只能使用 HTML 和 CSS\n- 不要使用 React、Vue、TypeScript\n- 不要使用 Bootstrap 或 Tailwind\n- 不要使用資料庫\n- 不要使用 API\n- 不要修改 server.js\n- 程式碼不要太複雜，適合初學者\n\n網站需要包含：\n1. 首頁歡迎區\n2. 關於我\n3. 我的興趣\n4. 我的作品或學習成果\n5. 聯絡方式\n6. 頁面上方簡單導覽列\n7. 手機上也能正常顯示\n\n請提供完整 index.html 和 style.css。",
+          "criteria": [
+            "網站有多個區塊",
+            "看起來像完整首頁",
+            "有個人作品或學習成果區",
+            "手機版排版不會壞掉"
+          ]
+        }
+      ],
+      "commonErrors": [
+        {
+          "id": "stage-2-error-1",
+          "symptom": "修改後網站沒有變",
+          "possibleCause": "改錯檔案、沒有存檔，或瀏覽器沒有重新整理。",
+          "helpPrompt": "我修改了 index.html 或 style.css，但是瀏覽器畫面沒有變。\n\n請教我如何檢查：\n1. 是否修改到正確檔案\n2. 是否已經存檔\n3. 是否需要重新整理瀏覽器\n4. 是否瀏覽器快取造成沒有更新"
+        },
+        {
+          "id": "stage-2-error-2",
+          "symptom": "CSS 沒有效果",
+          "possibleCause": "index.html 沒有正確連結 style.css。",
+          "helpPrompt": "我的 HTML 可以顯示，但 CSS 樣式沒有出現。\n\n我的檔案結構是：\npublic/\n├─ index.html\n├─ style.css\n└─ script.js\n\n請幫我檢查 index.html 應該如何正確連結 style.css。\n請用初學者可以理解的方式說明。"
+        },
+        {
+          "id": "stage-2-error-3",
+          "symptom": "AI 給了太複雜的程式碼",
+          "possibleCause": "提示詞沒有明確限制技術範圍。",
+          "helpPrompt": "剛剛的程式碼太複雜了。\n\n請重新提供一版更簡單的版本。\n\n限制：\n- 不要使用 React\n- 不要使用 Vue\n- 不要使用 Tailwind\n- 不要使用 Bootstrap\n- 不要使用 npm 套件\n- 只使用 HTML 和 CSS\n- 程式碼要適合完全初學者"
+        }
+      ]
+    },
+    {
+      "id": "stage-3-mobile-access",
+      "stage": 3,
+      "title": "任務卡 3：讓手機能連上網站",
+      "shortTitle": "讓手機能連上",
+      "description": "讓手機在與電腦連到相同 Wi-Fi 的情況下，可以開啟電腦上正在執行的網站。",
+      "imageUrl": "",
+      "estimatedMinutes": "30-40",
+      "minimumPassLine": "手機連得上網站",
+      "goal": "讓手機在與電腦連到相同 Wi-Fi 的情況下，可以開啟電腦上正在執行的網站。學員會理解 localhost 只代表自己的電腦、手機需要輸入電腦區域網路 IP、Node.js 伺服器需要允許區域網路裝置連線，且 Windows 防火牆可能影響連線。",
+      "fixedPrompt": "你是一位程式教學助教。\n\n我已經完成一個 Node.js + Express 網站，並且可以在電腦瀏覽器輸入 http://localhost:3000 開啟。\n\n現在我想讓手機在同一個 Wi-Fi 下，也能連上我電腦上的網站。\n\n請嚴格遵守以下限制：\n1. 使用 Windows 環境說明。\n2. 不要使用雲端部署。\n3. 不要使用 ngrok。\n4. 不要使用 Vercel、Netlify、GitHub Pages。\n5. 不要使用 React、Vue、TypeScript。\n6. 只使用我目前的 Node.js + Express 網站。\n7. 請一步一步說明，不要一次講太多理論。\n\n請教我完成以下事情：\n1. 如何確認手機和電腦在同一個 Wi-Fi。\n2. 如何查詢電腦的區域網路 IP。\n3. server.js 需要怎麼修改，才能讓手機連線。\n4. 手機瀏覽器應該輸入什麼網址。\n5. 如果手機連不上，該如何檢查 Windows 防火牆。\n6. 常見錯誤有哪些。\n\n請假設我的網站使用 port 3000。",
+      "acceptanceCriteria": [
+        "電腦可以開啟 http://localhost:3000",
+        "電腦可以查到自己的 IPv4 位址",
+        "server.js 已經允許區域網路連線",
+        "手機和電腦連到同一個 Wi-Fi",
+        "手機瀏覽器輸入 http://電腦IP:3000 可以開啟網站",
+        "手機看到的內容和電腦網站相同"
+      ],
+      "exampleMobileUrl": "http://192.168.1.25:3000",
+      "advancedChallenges": [
+        {
+          "level": "Basic",
+          "title": "手機成功開啟網站",
+          "goal": "手機能看到和電腦一樣的網站。",
+          "prompt": "我想完成最基本目標：讓手機在同一個 Wi-Fi 下連到我的 Node.js 網站。\n\n請只教我必要步驟，不要加入額外功能。\n\n我需要知道：\n1. 如何查電腦 IPv4 位址\n2. server.js 要怎麼確認是否允許手機連線\n3. 手機瀏覽器要輸入什麼網址\n4. 如果連不上，最基本要檢查什麼\n\n請用 Windows + Node.js + Express 說明。",
+          "criteria": [
+            "手機可以開啟網站",
+            "手機網址格式是 http://電腦IP:3000"
+          ]
+        },
+        {
+          "level": "Plus",
+          "title": "手機版排版優化",
+          "goal": "讓手機看到的網站不只是能開，還要好閱讀。",
+          "prompt": "我的手機已經可以連上網站了。\n\n現在請幫我優化手機版排版。\n\n限制：\n- 只修改 style.css\n- 不要修改 server.js\n- 不要使用 Bootstrap\n- 不要使用 Tailwind\n- 不要使用 React 或 Vue\n- 只使用一般 CSS\n- 程式碼要適合初學者理解\n\n請幫我加入適合手機的 responsive design，包含：\n1. 手機上文字不要太小\n2. 內容不要超出螢幕\n3. 按鈕好點擊\n4. 區塊間距舒適\n5. 電腦版仍然可以正常顯示\n\n請提供完整 style.css。",
+          "criteria": [
+            "手機上文字清楚",
+            "不需要左右滑動",
+            "按鈕容易點擊",
+            "區塊沒有擠在一起"
+          ]
+        },
+        {
+          "level": "Challenge",
+          "title": "做一個手機專屬互動區",
+          "goal": "讓網站更像是手機可以操作的小網頁，例如點按鈕後顯示一句話、切換主題色、顯示今日心情、切換圖片或卡片。",
+          "prompt": "我的手機已經可以連上我的 Node.js + Express 網站。\n\n現在我想加入一個適合手機操作的小互動功能。\n\n限制：\n- 只能修改 public/index.html、public/style.css、public/script.js\n- 不要修改 server.js\n- 不要使用 React、Vue、TypeScript\n- 不要使用資料庫\n- 不要使用 API\n- 不要安裝任何新套件\n- 只使用 HTML、CSS、JavaScript\n\n請幫我加入一個簡單互動功能：\n手機點擊按鈕後，畫面會顯示一句隨機鼓勵語。\n\n請提供完整的：\n1. index.html\n2. style.css\n3. script.js\n\n程式碼請保持簡單，並且適合初學者理解。",
+          "criteria": [
+            "手機可以點擊按鈕",
+            "點擊後畫面有變化",
+            "不需要重新整理頁面",
+            "電腦版也可以使用"
+          ]
+        }
+      ],
+      "commonErrors": [
+        {
+          "id": "stage-3-error-1",
+          "symptom": "手機輸入 localhost:3000 打不開",
+          "possibleCause": "localhost 對手機來說，是手機自己，不是電腦。",
+          "helpPrompt": "我的網站在電腦可以用 localhost:3000 開啟，但是手機輸入 localhost:3000 打不開。\n\n請用初學者可以理解的方式解釋為什麼手機不能用 localhost，並教我應該如何用電腦 IP 連線。"
+        },
+        {
+          "id": "stage-3-error-2",
+          "symptom": "手機和電腦不在同一個網路",
+          "possibleCause": "手機可能使用行動網路，或連到不同 Wi-Fi。",
+          "helpPrompt": "我的手機連不上電腦上的 Node.js 網站。\n\n請教我如何確認手機和電腦是否在同一個 Wi-Fi 網路下。\n請用 Windows 和手機的情境說明。"
+        },
+        {
+          "id": "stage-3-error-3",
+          "symptom": "server.js 只監聽 localhost",
+          "possibleCause": "伺服器只允許自己電腦連線，其他裝置連不進來。",
+          "suggestedCode": "app.listen(3000, '0.0.0.0', () => {\n  console.log('Server running on http://localhost:3000');\n});",
+          "helpPrompt": "我的 Node.js + Express 網站在電腦可以開啟，但手機用電腦 IP:3000 連不上。\n\n請幫我檢查 server.js 是否只監聽 localhost，並教我如何修改成可以讓同一個 Wi-Fi 的手機連線。\n\n請使用 Express 和 port 3000 的範例。"
+        },
+        {
+          "id": "stage-3-error-4",
+          "symptom": "Windows 防火牆阻擋",
+          "possibleCause": "Windows 不允許其他裝置連到 Node.js。",
+          "helpPrompt": "我的手機和電腦在同一個 Wi-Fi，網址也輸入 http://電腦IP:3000，但手機仍然連不上。\n\n請教我如何檢查 Windows 防火牆是否阻擋 Node.js 或 port 3000。\n請用安全、初學者可以理解的方式說明。"
+        },
+        {
+          "id": "stage-3-error-5",
+          "symptom": "IP 查錯",
+          "possibleCause": "學員可能看到很多 IP，不知道哪一個是 Wi-Fi 的 IPv4。",
+          "helpPrompt": "我在 Windows 輸入 ipconfig 後看到很多 IP 位址。\n\n請教我如何找出目前 Wi-Fi 使用的 IPv4 位址。\n請告訴我哪些 IP 可能是正確的，哪些通常不是我要用的。"
+        }
+      ]
+    },
+    {
+      "id": "stage-4-add-interaction",
+      "stage": 4,
+      "title": "任務卡 4：加入互動功能",
+      "shortTitle": "加入互動功能",
+      "description": "讓網站不只是靜態頁面，而是可以被使用者操作。",
+      "imageUrl": "",
+      "estimatedMinutes": "40-60",
+      "minimumPassLine": "按鈕點了有反應",
+      "goal": "讓網站不只是靜態頁面，而是可以被使用者操作。學員會理解 HTML 負責畫面內容、CSS 負責樣式、JavaScript 負責互動，並知道不需要後端、不需要資料庫，也能做出互動感。",
+      "fixedPrompt": "你是一位程式教學助教。\n\n我已經完成一個 Node.js + Express 網站，並且可以在電腦和手機上開啟。\n\n我的檔案結構是：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n現在我想加入一個簡單的網頁互動功能。\n\n請嚴格遵守以下限制：\n1. 只能修改 public/index.html、public/style.css、public/script.js。\n2. 不要修改 server.js。\n3. 不要使用 React、Vue、TypeScript。\n4. 不要使用資料庫。\n5. 不要使用 API。\n6. 不要安裝任何新套件。\n7. 不要使用 localStorage。\n8. 不要使用複雜框架。\n9. 程式碼要適合完全初學者理解。\n\n請幫我加入一個簡單互動功能：\n使用者點擊按鈕後，網頁上的文字會改變。\n\n請提供完整的：\n1. index.html\n2. style.css\n3. script.js\n\n請另外用簡單方式解釋：\n- HTML 哪裡是按鈕\n- CSS 哪裡控制外觀\n- JavaScript 哪裡負責點擊後改變文字",
+      "acceptanceCriteria": [
+        "網站仍然可以在 localhost:3000 開啟",
+        "手機仍然可以連上網站",
+        "網頁上有一個可點擊的按鈕",
+        "點擊按鈕後，畫面上的文字會改變",
+        "不需要重新整理頁面",
+        "終端機沒有紅色錯誤",
+        "瀏覽器 Console 沒有明顯錯誤"
+      ],
+      "expectedInteraction": "點擊按鈕 → 頁面文字發生變化",
+      "advancedChallenges": [
+        {
+          "level": "Basic",
+          "title": "點擊按鈕改變文字",
+          "goal": "完成最基本 JavaScript 互動。",
+          "prompt": "請幫我加入最簡單的 JavaScript 互動功能。\n\n功能：\n點擊按鈕後，網頁上的一句文字從「請點擊按鈕」變成「你成功加入互動功能了！」\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React\n- 不要使用 Vue\n- 不要使用 API\n- 不要使用資料庫\n- 不要修改 server.js\n- 請提供完整 index.html、style.css、script.js\n- 程式碼要適合初學者",
+          "criteria": [
+            "有一個按鈕",
+            "點擊後文字改變"
+          ]
+        },
+        {
+          "level": "Plus",
+          "title": "隨機顯示內容",
+          "goal": "讓互動更有趣，每次點擊出現不同文字，例如隨機鼓勵語、今日任務、心情、幸運顏色或午餐建議。",
+          "prompt": "請幫我把網站互動功能升級成「隨機訊息產生器」。\n\n功能：\n使用者每次點擊按鈕後，畫面會隨機顯示一句不同的訊息。\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React\n- 不要使用 Vue\n- 不要使用 API\n- 不要使用資料庫\n- 不要使用外部套件\n- 不要修改 server.js\n- 訊息直接寫在 script.js 的陣列裡\n- 程式碼要適合初學者理解\n\n請提供完整的：\n1. index.html\n2. style.css\n3. script.js",
+          "criteria": [
+            "點擊按鈕會出現訊息",
+            "多點幾次會出現不同內容",
+            "互動不需要重新整理頁面"
+          ]
+        },
+        {
+          "level": "Challenge",
+          "title": "做一個小型互動作品",
+          "goal": "讓程度較好的學員做出一個有展示效果的小作品。建議三選一：抽籤小工具、今日心情卡、簡單待辦清單。",
+          "options": [
+            {
+              "title": "抽籤小工具",
+              "prompt": "請幫我把網站做成一個簡單的「抽籤小工具」。\n\n功能：\n1. 使用者點擊「抽一張」按鈕\n2. 畫面顯示一張結果卡片\n3. 結果從幾個固定選項中隨機出現\n4. 每次點擊可能出現不同結果\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React、Vue、TypeScript\n- 不要使用 API\n- 不要使用資料庫\n- 不要使用圖片\n- 不要安裝任何套件\n- 不要修改 server.js\n- 程式碼要適合初學者理解\n\n請提供完整：\n1. index.html\n2. style.css\n3. script.js"
+            },
+            {
+              "title": "今日心情卡",
+              "prompt": "請幫我把網站做成一個簡單的「今日心情卡」。\n\n功能：\n1. 使用者點擊不同心情按鈕\n2. 畫面顯示對應的文字\n3. 不同心情有不同背景或卡片樣式\n4. 手機上也可以正常操作\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React、Vue、TypeScript\n- 不要使用 API\n- 不要使用資料庫\n- 不要安裝任何套件\n- 不要修改 server.js\n- 程式碼要適合初學者理解\n\n請提供完整：\n1. index.html\n2. style.css\n3. script.js"
+            },
+            {
+              "title": "簡單待辦清單",
+              "prompt": "請幫我把網站做成一個非常簡單的待辦清單。\n\n功能：\n1. 使用者可以輸入一件事情\n2. 點擊按鈕後，事情會出現在畫面上\n3. 不需要儲存資料\n4. 重新整理後資料消失也沒關係\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React、Vue、TypeScript\n- 不要使用 API\n- 不要使用資料庫\n- 不要使用 localStorage\n- 不要安裝任何套件\n- 不要修改 server.js\n- 程式碼要適合初學者理解\n\n請提供完整：\n1. index.html\n2. style.css\n3. script.js"
+            }
+          ],
+          "criteria": [
+            "網站有明確互動主題",
+            "使用者點擊或輸入後，畫面會改變",
+            "手機可以操作",
+            "沒有使用超出課程範圍的技術"
+          ]
+        }
+      ],
+      "commonErrors": [
+        {
+          "id": "stage-4-error-1",
+          "symptom": "按鈕沒有反應",
+          "possibleCause": "script.js 沒有正確連結，或 id 名稱對不起來。",
+          "helpPrompt": "我的網站按鈕點下去沒有反應。\n\n我的檔案有 index.html、style.css、script.js。\n\n請幫我檢查：\n1. index.html 是否正確連結 script.js\n2. button 的 id 是否和 script.js 裡的一樣\n3. JavaScript 是否有錯誤\n4. 要如何用瀏覽器 Console 檢查錯誤\n\n請用初學者可以理解的方式說明。"
+        },
+        {
+          "id": "stage-4-error-2",
+          "symptom": "畫面變空白",
+          "possibleCause": "AI 產生的 HTML 結構有錯，或貼程式碼時覆蓋錯檔案。",
+          "helpPrompt": "我修改程式碼後，網頁變成空白。\n\n請一步一步教我如何檢查：\n1. index.html 是否還有內容\n2. 是否把 CSS 或 JavaScript 貼到錯誤檔案\n3. 瀏覽器 Console 是否有錯誤\n4. 如何回到上一個可運作版本"
+        },
+        {
+          "id": "stage-4-error-3",
+          "symptom": "AI 給了後端 API 或資料庫",
+          "possibleCause": "挑戰功能描述太自由，AI 自動擴大架構。",
+          "helpPrompt": "請不要使用後端 API、資料庫、fetch、Express route 或任何新套件。\n\n我要的互動功能只需要在瀏覽器前端完成。\n\n請重新提供一版，只修改：\n- public/index.html\n- public/style.css\n- public/script.js\n\n不要修改 server.js。"
+        },
+        {
+          "id": "stage-4-error-4",
+          "symptom": "手機可以開網站，但按鈕不好點",
+          "possibleCause": "按鈕太小，手機排版沒有優化。",
+          "helpPrompt": "我的網站在手機上可以開啟，但是按鈕太小、不好點。\n\n請幫我修改 CSS，讓手機上：\n1. 按鈕更大\n2. 文字更清楚\n3. 區塊間距更舒服\n4. 不需要左右滑動\n\n限制：\n- 只修改 style.css\n- 不要使用外部框架\n- 請提供完整 style.css"
+        }
+      ]
+    }
+  ],
+  "courseSchedule": [
+    {
+      "stage": 1,
+      "title": "啟動網站",
+      "estimatedMinutes": "30-40",
+      "goal": "localhost:3000 能看到網站",
+      "minimumPassLine": "電腦看得到網站"
+    },
+    {
+      "stage": 2,
+      "title": "修改網站內容",
+      "estimatedMinutes": "30-40",
+      "goal": "網站變成自己的個人網站",
+      "minimumPassLine": "網站有自己的內容"
+    },
+    {
+      "stage": 3,
+      "title": "讓手機能連上",
+      "estimatedMinutes": "30-40",
+      "goal": "手機可以開啟電腦上的網站",
+      "minimumPassLine": "手機連得上網站"
+    },
+    {
+      "stage": 4,
+      "title": "加入互動功能",
+      "estimatedMinutes": "40-60",
+      "goal": "網站可以被點擊、操作、產生變化",
+      "minimumPassLine": "按鈕點了有反應"
+    }
+  ]
+}
