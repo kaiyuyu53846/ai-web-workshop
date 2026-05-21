@@ -48,7 +48,7 @@
       "Netlify",
       "Docker"
     ],
-    "correctionPrompt": "請重新回答。這堂課只允許使用 Node.js、Express、HTML、CSS、JavaScript。不要加入其他框架、資料庫、API、雲端部署或登入系統。請提供適合初學者的簡單版本。"
+    "correctionPrompt": "請重新回答。這堂課只允許使用 Node.js、Express、HTML、CSS、JavaScript。請用 Windows + VS Code 的初學者情境說明，並且每一步都要包含操作位置、操作動作、這一步的目的、完成後應該看到什麼。不要加入其他框架、資料庫、API、雲端部署、登入系統或複雜套件。"
   },
   "taskCards": [
     {
@@ -56,55 +56,58 @@
       "stage": 1,
       "title": "任務卡 1：啟動網站",
       "shortTitle": "啟動網站",
-      "description": "建立一個最基本的 Node.js + Express 網站，並且能在電腦瀏覽器中開啟。",
+      "description": "確認 VS Code 與 Node.js 可以使用，建立最基本的 Node.js + Express 網站，並在電腦瀏覽器看到自己的網頁。",
       "imageUrl": "/images/missions/mission_1_website_startup.png",
-      "estimatedMinutes": "10",
-      "minimumPassLine": "電腦看得到網站",
-      "goal": "讓學員建立一個最基本的 Node.js + Express 網站，確認 Node.js 可以正常執行、專案資料夾建立正確、Express 伺服器可以啟動，並且瀏覽器可以看到自己的網頁。完成後可在電腦瀏覽器輸入 http://localhost:3000 並看到自己的網頁。",
-      "fixedPrompt": "你是一位程式教學助教，請用完全初學者可以理解的方式，帶我一步一步建立一個最簡單的 Node.js + Express 網站。\n\n請嚴格遵守以下限制：\n1. 只能使用 Node.js、Express、HTML、CSS、JavaScript。\n2. 不要使用 React、Vue、TypeScript。\n3. 不要使用資料庫。\n4. 不要使用雲端部署。\n5. 不要加入登入系統。\n6. 不要安裝 Express 以外的套件。\n7. 請使用 Windows + VS Code 的情境說明。\n8. 每一步都要清楚告訴我：\n   - 要在哪裡操作\n   - 要輸入什麼指令\n   - 要建立什麼檔案\n   - 每個檔案要放什麼內容\n\n請幫我建立以下固定結構：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n最後請讓我可以在瀏覽器輸入 http://localhost:3000，看到網頁顯示「Hello My Website」。\n\n請不要一次解釋太多理論，請用「步驟 1、步驟 2、步驟 3」的方式帶我完成。",
+      "estimatedMinutes": "10-15",
+      "minimumPassLine": "電腦瀏覽器看得到網站",
+      "goal": "確認 VS Code、Node.js、npm 已可正常使用，接著建立 my-website 專案資料夾，安裝 Express，啟動伺服器，並在電腦瀏覽器輸入 http://localhost:3000 看到自己的網頁。",
+      "fixedPrompt": "【你可以先這樣問 AI】\n\n我想建立一個最簡單的網站，請一步一步教我。\n我使用 Windows 和 VS Code，已經安裝好 Node.js。\n請不要一次講太多，每一步都告訴我要在哪裡操作。\n最後我希望能在瀏覽器看到 Hello My Website。\n\n【如果 AI 回答太難，可以追加】\n\n- 請放慢速度，一次只給我 1～2 個步驟。\n- 請明確告訴我是在 VS Code 左側檔案區、VS Code 終端機，還是瀏覽器網址列操作。\n- 如果要輸入指令，請用獨立的程式碼區塊顯示，並告訴我不要貼到檔案裡。\n- 每一步請補一句白話說明：這一步的目的。\n- 請不要使用 React、Vue、TypeScript、Tailwind、Bootstrap、資料庫、API、雲端部署或登入系統。\n\n【整理後可以貼給 AI 的版本】\n\n請用 Windows + VS Code 的情境，帶我建立一個最基本的 Node.js + Express 網站。\n請先確認 node -v 和 npm -v 可以使用。\n接著請帶我建立 my-website 資料夾，內容包含 package.json、server.js、public/index.html、public/style.css、public/script.js。\n網站只要先顯示 Hello My Website，並能在 http://localhost:3000 開啟。\n請每一步都說明操作位置、操作動作、這一步的目的、完成後應該看到什麼。\n技術限制：只能使用 Node.js、Express、HTML、CSS、JavaScript，不要加入其他框架、資料庫、API、雲端部署或複雜套件。\n\n【完成後停止規則】\n\n完成本任務目標後，請停止。\n不要自行加入下一個功能、不要安裝 Live Server、不要使用 VS Code 一鍵預覽、不要美化網站、不要加入手機連線、不要延伸到修改內容或下一張任務卡。\n如果我回覆「好」、「完成了」、「下一步呢」，請只提醒我：\n「你已經完成任務一。請回到課程網頁勾選 checklist。接下來請依照課程網頁的下一張任務卡繼續，不要在這個聊天中自行延伸。」\n不要自行定義新的下一步。",
       "acceptanceCriteria": [
-        "VS Code 中有 my-website 資料夾",
-        "my-website 裡有 server.js",
-        "my-website 裡有 package.json",
-        "my-website 裡有 public 資料夾",
-        "public 資料夾裡有 index.html、style.css、script.js",
-        "終端機執行 node server.js 後沒有紅色錯誤",
-        "瀏覽器輸入 http://localhost:3000 可以看到網站",
-        "網頁上有出現 Hello My Website"
+        "已經打開 VS Code，並且可以跟著 AI 建立網站專案",
+        "輸入 node -v 後有看到一串版本號",
+        "輸入 npm -v 後有看到一串版本號",
+        "Chrome 或 Edge 可以開啟 http://localhost:3000",
+        "網頁上看得到 Hello My Website",
+        "重新整理瀏覽器後，網站仍然可以正常顯示",
+        "學員知道目前網站是從自己的電腦開啟，不是網路上的公開網站"
       ],
       "expectedOutput": "Hello My Website",
       "advancedChallenges": [
         {
           "level": "Basic",
-          "title": "完成基本網站啟動",
-          "goal": "成功在 localhost:3000 看到 Hello My Website",
-          "prompt": "",
+          "title": "改首頁文字與標題",
+          "goal": "網站已經成功啟動後，做最小幅度的客製化，讓首頁不再只是範例文字。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我已經成功建立 Node.js + Express 網站，可以在 http://localhost:3000 看到 Hello My Website。\n\n現在我想做一個很小的加強：把首頁改成自己的網站名稱，並加上一句簡短歡迎語。\n\n請一步一步告訴我：\n1. 在 VS Code 左側檔案總管打開 public/index.html\n2. 修改瀏覽器分頁標題 title\n3. 把 Hello My Website 改成我的網站名稱\n4. 加上一句簡短歡迎語\n5. Ctrl+S 存檔後，到 Chrome 重新整理確認\n\n限制：\n- 只修改 public/index.html\n- 不要修改 server.js\n- 不要修改 package.json\n- 不要新增套件\n- 不要使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 程式碼要適合初學者閱讀\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "網站可以啟動",
-            "瀏覽器可以開啟",
-            "畫面有文字"
+            "瀏覽器分頁標題已改成自己的網站名稱",
+            "首頁主標題不再是 Hello My Website",
+            "首頁多了一句簡短歡迎語",
+            "重新整理後畫面仍然可以正常顯示"
           ]
         },
         {
           "level": "Plus",
-          "title": "改成自己的網站名稱",
-          "goal": "把首頁文字改成自己的網站名稱。",
-          "prompt": "我已經成功建立 Node.js + Express 網站，並且可以在 localhost:3000 看到 Hello My Website。\n\n現在請教我如何把首頁文字改成我自己的網站名稱。\n\n限制：\n- 只修改 index.html\n- 不要改 server.js\n- 不要加入新的套件\n- 請一步一步告訴我該改哪一行",
+          "title": "加入簡單 CSS 外觀",
+          "goal": "讓網站不只是純文字，加入背景色、置中排版與簡單卡片區塊。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我的網站已經可以在 http://localhost:3000 開啟，也已經把首頁文字改成自己的內容。\n\n現在我想讓它看起來不要只是純文字。請幫我加入簡單 CSS 外觀。\n\n請說明：\n1. 要在 VS Code 左側檔案總管打開 public/index.html 和 public/style.css\n2. index.html 需要怎麼確認已連結 style.css\n3. style.css 要加入哪些簡單樣式\n4. 存檔後如何在 Chrome 按 Ctrl+F5 確認\n\n希望包含：\n- 背景色\n- 內容置中\n- 字體大小調整\n- 一個簡單卡片區塊\n\n限制：\n- 只修改 public/index.html 和 public/style.css\n- 不要修改 server.js\n- 不要使用外部框架、Tailwind、Bootstrap\n- 不要安裝任何套件\n- CSS 請保持初學者能看懂\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "首頁不再是 Hello My Website",
-            "首頁改成自己的網站名稱"
+            "首頁有背景色或基本視覺風格",
+            "主要內容有置中或清楚排版",
+            "頁面上有一個簡單卡片或內容區塊",
+            "文字大小與間距比原本更容易閱讀"
           ]
         },
         {
           "level": "Challenge",
-          "title": "加入簡單版面",
-          "goal": "讓網站看起來像一個真正的首頁，包含主標題、副標題、自我介紹、按鈕與簡單背景色。",
-          "prompt": "我已經有一個可以在 localhost:3000 開啟的 Node.js + Express 網站。\n\n目前檔案結構是：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n請幫我把首頁設計成一個簡單的個人網站首頁。\n\n限制：\n- 只能修改 index.html 和 style.css\n- 不要修改 server.js\n- 不要使用 React、Vue、TypeScript\n- 不要使用外部套件\n- 不要使用網路圖片\n- 請提供完整的 index.html 和 style.css 程式碼\n\n首頁需要包含：\n1. 我的網站標題\n2. 一段簡短自我介紹\n3. 一個按鈕\n4. 簡單乾淨的排版\n5. 適合初學者理解的 CSS",
+          "title": "做一個簡單首頁骨架",
+          "goal": "建立之後可以繼續擴充的首頁骨架，包含頁首、主要內容區、區塊與頁尾。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我已經完成一個可以啟動的 Node.js + Express 網站，也做過簡單文字與 CSS 調整。\n\n現在我想把首頁整理成一個可以繼續擴充的簡單骨架。\n\n請幫我設計 public/index.html 和 public/style.css，並一步一步說明怎麼貼上與確認。\n\n首頁骨架需要包含：\n1. header：放網站名稱\n2. main：放主要內容\n3. 至少兩個 section：例如歡迎區、關於這個網站\n4. footer：放簡短版權或作者文字\n5. 一個按鈕，但先不需要互動功能\n\n限制：\n- 只使用 HTML 和 CSS\n- 只修改 public/index.html 和 public/style.css\n- 不要修改 server.js\n- 不加入 JavaScript 複雜功能\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 不安裝任何新套件\n- 程式碼請保持簡單，並加上少量中文註解\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "首頁有標題",
-            "首頁有自我介紹",
-            "首頁有按鈕",
-            "網站看起來比純文字更完整"
+            "首頁有清楚的頁首 header",
+            "首頁有主要內容區 main",
+            "首頁至少有兩個內容區塊 section",
+            "首頁底部有 footer",
+            "頁面看起來比單一文字頁更像完整首頁"
           ]
         }
       ],
@@ -112,194 +115,300 @@
         {
           "id": "stage-1-error-1",
           "symptom": "node 不是內部或外部命令",
-          "possibleCause": "Node.js 沒有安裝成功，或安裝後沒有重新開啟終端機。",
-          "helpPrompt": "我在 Windows 的 VS Code 終端機輸入 node -v，但出現「node 不是內部或外部命令」。\n\n請用初學者可以理解的方式，教我如何確認 Node.js 是否安裝成功，以及如何重新開啟 VS Code 終端機。"
+          "possibleCause": "Node.js 可能沒有安裝成功，或安裝後沒有重新開啟 VS Code 終端機。",
+          "helpPrompt": "我在 VS Code 下方的終端機視窗輸入 node -v，但出現「node 不是內部或外部命令」或「找不到 node」。\n\n請用繁體中文、Windows + VS Code 的情境，告訴我：\n1. 這個錯誤代表什麼意思（一句白話說明）\n2. 應該先嘗試關閉 VS Code 再重新打開，然後再次輸入 node -v 試試看\n3. 如果還是不行，代表 Node.js 可能沒有安裝好，需要請現場助教協助\n\n請不要要求我重新安裝 Node.js，請讓我先試試重新開啟 VS Code。\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-1-error-2",
-          "symptom": "找不到 package.json",
-          "possibleCause": "終端機目前所在位置不在 my-website 資料夾裡。",
-          "helpPrompt": "我在 VS Code 終端機執行 npm install express，但是出現找不到 package.json 或路徑相關錯誤。\n\n請教我如何確認目前終端機所在資料夾，並且如何切換到 my-website 資料夾。\n請使用 Windows 指令說明。"
+          "symptom": "找不到 package.json 或路徑錯誤",
+          "possibleCause": "VS Code 終端機目前的位置不在 my-website 資料夾裡。",
+          "helpPrompt": "我在 VS Code 下方終端機執行 npm install express，出現找不到 package.json 或路徑相關錯誤。\n\n請用繁體中文、Windows + VS Code 的情境告訴我：\n1. 這個錯誤的原因是什麼（用一句白話說明）\n2. 終端機目前所在資料夾的意思\n3. 如何在 VS Code 終端機確認目前在哪個資料夾（請提供指令）\n4. 如何切換到 my-website 資料夾（請提供 Windows 指令）\n5. 最簡單的方法：在 VS Code 用 File → Open Folder 直接開啟 my-website 資料夾，然後重新開 Terminal\n\n請每一步都說明清楚操作位置。\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-1-error-3",
           "symptom": "Cannot find module 'express'",
-          "possibleCause": "Express 沒有安裝成功。",
-          "helpPrompt": "我執行 node server.js 時出現 Cannot find module 'express'。\n\n我的專案是 Node.js + Express 網站，資料夾名稱是 my-website。\n\n請一步一步教我如何修正，包含：\n1. 如何確認目前位置\n2. 如何安裝 express\n3. 如何重新啟動 server.js"
+          "possibleCause": "Express 沒有安裝成功，或安裝在錯誤的資料夾。",
+          "helpPrompt": "我在 VS Code 終端機執行 node server.js 時出現 Cannot find module 'express'。\n\n請用繁體中文、Windows + VS Code 情境告訴我：\n1. 這個錯誤的意思（一句白話）\n2. 如何確認 VS Code 終端機目前在 my-website 資料夾（說明操作位置）\n3. 在 VS Code 終端機輸入什麼指令可以安裝 express（請用 code block 顯示）\n4. 安裝完後如何重新啟動 server.js（請用 code block 顯示指令）\n5. 成功後應該在終端機看到什麼\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-1-error-4",
-          "symptom": "瀏覽器打不開 localhost:3000",
-          "possibleCause": "server.js 沒有啟動，或終端機已經停止伺服器。",
-          "helpPrompt": "我已經建立 Node.js + Express 網站，但是瀏覽器輸入 http://localhost:3000 打不開。\n\n請一步一步幫我檢查：\n1. server.js 是否正在執行\n2. 終端機有沒有錯誤訊息\n3. port 3000 是否被占用\n4. 應該如何重新啟動網站"
+          "symptom": "Chrome 打不開 localhost:3000",
+          "possibleCause": "server.js 沒有啟動，或終端機已經關閉導致伺服器停止。",
+          "helpPrompt": "我已經建立 Node.js + Express 網站，但 Chrome 的網址列輸入 http://localhost:3000 打不開，出現「找不到網頁」或「連線被拒」。\n\n請用繁體中文、Windows + VS Code 情境告訴我：\n1. localhost:3000 的意思是什麼（一句白話說明）\n2. 如何確認 VS Code 終端機裡的伺服器還在執行（應該看到什麼）\n3. 如果終端機沒有顯示伺服器啟動的訊息，如何重新執行 node server.js（說明操作位置與指令）\n4. 如果有紅色錯誤訊息，請告訴我應該把錯誤訊息完整複製給 AI 協助排查\n5. 重新啟動後應該在 Chrome 看到什麼\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
+        }
+      ],
+      "promptSections": [
+        {
+          "id": "starter",
+          "title": "先複製這段開始",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "content": "我想建立一個最簡單的網站，請一步一步教我。\n我使用 Windows 和 VS Code，已經安裝好 Node.js。\n請不要一次講太多，每次只給我 1～2 個步驟。\n每一步都請告訴我：\n1. 要在哪裡操作\n2. 要做什麼\n3. 這一步的目的，用一句白話說明\n4. 做完後應該看到什麼\n\n請不要只叫我照做，請讓我理解每個動作是在做什麼、為什麼要做。\n最後我希望能在瀏覽器看到 Hello My Website。\n完成這個目標後，請停止，提醒我回到課程網頁勾選 checklist，不要自行延伸下一個功能或下一個教學步驟。"
+        },
+        {
+          "id": "followups",
+          "title": "如果 AI 回答太難，可以追加",
+          "target": "ChatGPT",
+          "type": "quickReplies",
+          "items": [
+            "請放慢速度，一次只給我 1～2 個步驟。",
+            "請明確告訴我是在 VS Code 左側檔案區、VS Code 終端機，還是瀏覽器網址列操作。",
+            "如果要輸入指令，請用獨立的程式碼區塊顯示，並告訴我不要貼到檔案裡。",
+            "每一步請補一句白話說明：這一步的目的。",
+            "請不要使用 React、Vue、TypeScript、Tailwind、Bootstrap、資料庫、API、雲端部署或登入系統。",
+            "完成任務一後請停止；如果我問下一步，只提醒我回到課程網頁勾選 checklist，並依照下一張任務卡繼續。"
+          ]
+        },
+        {
+          "id": "full",
+          "title": "想一次講清楚，可以複製完整版本",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "defaultCollapsed": true,
+          "content": "請用 Windows + VS Code 的情境，帶我建立一個最基本的 Node.js + Express 網站。\n請先確認 node -v 和 npm -v 可以使用。\n接著請帶我建立 my-website 資料夾，內容包含 package.json、server.js、public/index.html、public/style.css、public/script.js。\n網站只要先顯示 Hello My Website，並能在 http://localhost:3000 開啟。\n請每一步都說明操作位置、操作動作、這一步的目的、完成後應該看到什麼。\n技術限制：只能使用 Node.js、Express、HTML、CSS、JavaScript，不要加入其他框架、資料庫、API、雲端部署或複雜套件。\n\n【完成後停止規則】\n\n完成本任務目標後，請停止。\n不要自行加入下一個功能、不要安裝 Live Server、不要使用 VS Code 一鍵預覽、不要美化網站、不要加入手機連線、不要延伸到修改內容或下一張任務卡。\n如果我回覆「好」、「完成了」、「下一步呢」，請只提醒我：\n「你已經完成任務一。請回到課程網頁勾選 checklist。接下來請依照課程網頁的下一張任務卡繼續，不要在這個聊天中自行延伸。」\n不要自行定義新的下一步。"
         }
       ]
     },
     {
-      "id": "stage-2-customize-content",
+      "id": "stage-2-mobile-access",
       "stage": 2,
-      "title": "任務卡 2：修改網站內容",
-      "shortTitle": "修改網站內容",
-      "description": "把網站從範例頁面改成屬於自己的個人網站。",
-      "imageUrl": "/images/missions/mission_2_customize_website.png",
-      "estimatedMinutes": "10",
-      "minimumPassLine": "網站有自己的內容",
-      "goal": "讓學員把網站從範例頁面改成屬於自己的網站，理解 index.html 控制網站內容、style.css 控制網站外觀，並能透過 AI 協助改文字、排版與顏色。",
-      "fixedPrompt": "你是一位程式教學助教。\n\n我已經完成一個 Node.js + Express 網站，並且可以在 http://localhost:3000 開啟。\n\n我的網站資料夾結構是：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n現在我想把這個網站改成「我的個人網站」。\n\n請嚴格遵守以下限制：\n1. 只能修改 public/index.html 和 public/style.css。\n2. 不要修改 server.js。\n3. 不要使用 React、Vue、TypeScript。\n4. 不要使用資料庫。\n5. 不要使用 API。\n6. 不要安裝任何新套件。\n7. 請提供完整的 index.html 和 style.css 程式碼。\n8. 程式碼要適合初學者閱讀，不要太複雜。\n\n我的個人網站需要包含：\n1. 網站標題\n2. 我的名字或暱稱\n3. 一段自我介紹\n4. 三個興趣或特色\n5. 一個簡單按鈕\n6. 乾淨、清楚、適合手機瀏覽的排版\n\n請先給我一版簡單、安全、不複雜的版本。",
+      "title": "任務卡 2：讓手機能連上網站",
+      "shortTitle": "讓手機能連上",
+      "description": "在網站最簡單的狀態下，確認手機可以用電腦的 IP 連上網站，提早發現問題。",
+      "imageUrl": "/images/missions/mission_2_mobile_connection.png",
+      "estimatedMinutes": "10-15",
+      "minimumPassLine": "手機可以連上電腦的網站",
+      "goal": "理解 localhost 只代表自己這台電腦，手機需要用電腦的區域網路 IP 才能連上。確認 server.js 允許區域網路連線，查詢電腦 IPv4 位址，在手機瀏覽器輸入正確網址，並排查防火牆問題。",
+      "fixedPrompt": "【你可以先這樣問 AI】\n\n我的網站已經可以在電腦用 http://localhost:3000 開啟。\n我想讓手機在同一個 Wi-Fi 下也能打開這個網站。\n請用 Windows 和 VS Code 的情境一步一步教我，不要用雲端部署。\n如果有需要查 IP，請告訴我要在哪裡查、哪一個才是正確的。\n\n【如果 AI 回答太難，可以追加】\n\n- 請先用一句白話解釋 localhost 和電腦 IP 有什麼不同。\n- 請一次只給我 1～2 個步驟，等我完成再繼續。\n- 請明確說明每一步是在 VS Code、Windows 終端機、電腦瀏覽器，還是手機瀏覽器操作。\n- 如果我要看 ipconfig，請教我怎麼找 Wi-Fi 的 IPv4 位址，並提醒我不要用 127.0.0.1。\n- 請不要使用 ngrok、Vercel、Netlify、API、雲端部署或任何新套件。\n\n【整理後可以貼給 AI 的版本】\n\n請用 Windows + VS Code 的情境，帶我讓手機連上我電腦上的 Node.js + Express 網站。\n我的網站目前可以在電腦瀏覽器用 http://localhost:3000 開啟。\n請幫我確認 server.js 是否允許同 Wi-Fi 裝置連線，必要時把監聽位置改成 0.0.0.0。\n請教我用 ipconfig 找到電腦的 Wi-Fi IPv4 位址，然後在手機瀏覽器輸入 http://電腦IP:3000 測試。\n每一步請說明操作位置、操作動作、這一步的目的、完成後應該看到什麼。\n限制：不要使用雲端部署、ngrok、API、資料庫或新套件；只使用目前的 Node.js、Express、HTML、CSS、JavaScript 網站。\n\n【完成後停止規則】\n\n完成本任務目標後，請停止。\n不要自行部署到雲端、不要使用 ngrok、不要使用 Vercel 或 Netlify、不要申請網址、不要改網站內容、不要加入互動功能、不要自行進入下一張任務卡。\n如果我回覆「好」、「完成了」、「下一步呢」，請只提醒我：\n「你已經完成任務二。請回到課程網頁勾選 checklist。接下來請依照下一張任務卡繼續。」\n不要自行定義新的下一步。",
       "acceptanceCriteria": [
-        "網站標題已經改成自己的內容",
-        "首頁有自己的名字或暱稱",
-        "有一段自我介紹",
-        "有三個興趣、特色或作品項目",
-        "有簡單排版，不是純文字堆在一起",
-        "修改後網站仍然可以在 localhost:3000 開啟",
-        "終端機沒有紅色錯誤"
+        "電腦的 Chrome 仍然可以開啟 http://localhost:3000",
+        "手機和電腦連到同一個 Wi-Fi",
+        "已經找到一組像 192.168.x.x 的電腦 IP",
+        "手機網址列輸入 http://電腦IP:3000 後可以看到網站",
+        "手機看到的網站內容和電腦一樣",
+        "手機重新整理後，網站仍然可以正常顯示"
       ],
-      "verificationMethod": "打開瀏覽器，彼此看隔壁同學的網站，確認每個人的網站內容不同。",
+      "exampleMobileUrl": "http://192.168.1.25:3000",
       "advancedChallenges": [
         {
           "level": "Basic",
-          "title": "改文字內容",
-          "goal": "只修改網站上的文字內容，包含網站標題、名字或暱稱、自我介紹、興趣列表。",
-          "prompt": "我想先完成最基本的個人網站內容修改。\n\n請幫我修改 index.html，讓網站包含：\n1. 我的名字\n2. 一句歡迎語\n3. 一段自我介紹\n4. 三個興趣\n\n限制：\n- 只修改 index.html\n- 不要修改 style.css\n- 不要修改 server.js\n- 不要加入任何複雜功能\n- 請提供完整 index.html",
+          "title": "製作手機連線紀錄小卡",
+          "goal": "把剛剛成功連線的資訊記錄在網頁上，幫助理解手機是怎麼連到電腦網站的。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我的手機已經可以在同一個 Wi-Fi 下開啟電腦上的網站。\n\n現在我想在首頁加一個「手機連線資訊」小卡，記錄剛剛做了什麼。\n\n請一步一步帶我修改 public/index.html 和 public/style.css。\n\n小卡內容需要包含：\n1. 標題：手機連線資訊\n2. 我的電腦 IP：讓我手動填入，例如 192.168.1.25\n3. 手機輸入的網址格式：http://電腦IP:3000\n4. 提醒：手機和電腦要在同一個 Wi-Fi 才能連上\n\n限制：\n- 只修改 public/index.html 和 public/style.css\n- 不要修改 server.js\n- 不要自動偵測 IP\n- 不要使用 API\n- 不要新增套件\n- IP 只要用文字手動填入\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "首頁文字已經不是範例文字",
-            "內容可以看出是自己的網站"
+            "首頁有「手機連線資訊」區塊",
+            "頁面上看得到電腦 IP 或範例 IP",
+            "頁面上看得到手機網址格式 http://電腦IP:3000",
+            "頁面有提醒手機和電腦要在同一個 Wi-Fi"
           ]
         },
         {
           "level": "Plus",
-          "title": "修改外觀風格",
-          "goal": "讓網站有基本視覺設計，可調整背景色、字體大小、區塊間距、卡片效果與按鈕樣式。",
-          "prompt": "我已經完成個人網站的文字內容。\n\n現在請幫我修改 style.css，讓網站看起來更乾淨、有設計感。\n\n限制：\n- 只修改 style.css\n- 不要修改 server.js\n- 不要使用外部 CSS 框架\n- 不要使用 Tailwind\n- 不要使用 Bootstrap\n- CSS 要適合初學者理解\n\n請幫我加入：\n1. 背景色\n2. 置中的主要內容區塊\n3. 卡片式區塊\n4. 好看的按鈕\n5. 手機上也能正常閱讀的排版\n\n請提供完整 style.css。",
+          "title": "手機版閱讀優化",
+          "goal": "讓手機開啟網站時更好閱讀，內容不擠、不超出螢幕。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我的手機已經可以連上網站，首頁也有手機連線資訊小卡。\n\n現在請幫我優化手機版閱讀體驗。\n\n請說明：\n1. 在 VS Code 左側檔案總管打開 public/style.css\n2. 要調整哪些 CSS\n3. Ctrl+S 存檔後，在手機重新整理確認\n\n希望改善：\n- 文字不要太小\n- 內容不要超出螢幕\n- 區塊間距更舒服\n- 按鈕或卡片比較好點擊、好閱讀\n- 加入簡單 responsive CSS\n\n限制：\n- 只修改 public/style.css\n- 不修改 server.js\n- 不使用 Bootstrap、Tailwind 或其他框架\n- 不使用 JavaScript 偵測裝置\n- CSS 要適合初學者理解\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "網站有背景色",
-            "內容區塊有排版",
-            "按鈕有樣式",
-            "手機或縮小瀏覽器時仍能閱讀"
+            "手機上文字清楚可讀",
+            "手機上內容不需要左右滑動",
+            "區塊間距在手機上不擁擠",
+            "手機上卡片或按鈕看起來容易閱讀或點擊"
           ]
         },
         {
           "level": "Challenge",
-          "title": "建立個人作品首頁",
-          "goal": "把網站做得像一個小型作品集，包含個人介紹區、興趣區、作品區、聯絡方式區與頁面導覽按鈕。",
-          "prompt": "我想把目前的個人網站升級成一個簡單作品集首頁。\n\n請幫我設計 index.html 和 style.css。\n\n限制：\n- 只能使用 HTML 和 CSS\n- 不要使用 React、Vue、TypeScript\n- 不要使用 Bootstrap 或 Tailwind\n- 不要使用資料庫\n- 不要使用 API\n- 不要修改 server.js\n- 程式碼不要太複雜，適合初學者\n\n網站需要包含：\n1. 首頁歡迎區\n2. 關於我\n3. 我的興趣\n4. 我的作品或學習成果\n5. 聯絡方式\n6. 頁面上方簡單導覽列\n7. 手機上也能正常顯示\n\n請提供完整 index.html 和 style.css。",
+          "title": "製作手機測試說明頁",
+          "goal": "讓網站有一個可以展示給同學看的手機測試區，清楚說明電腦與手機如何連線。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我的手機已經可以連上我的 Node.js + Express 網站。\n\n現在我想做一個「手機測試說明頁」區塊，讓同學看得懂我是怎麼測試成功的。\n\n請幫我修改 public/index.html 和 public/style.css。\n\n頁面需要包含：\n1. 「手機測試成功」區塊\n2. 測試步驟摘要：啟動伺服器、查 IP、手機輸入網址、確認同 Wi-Fi\n3. 電腦網址：http://localhost:3000\n4. 手機網址：http://電腦IP:3000\n5. 簡單狀態標籤：電腦 OK、手機 OK、同 Wi-Fi OK\n\n限制：\n- 只修改 HTML 和 CSS\n- 不修改 server.js\n- 不使用 API\n- 不自動偵測網路狀態\n- 不新增套件\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- IP 和狀態標籤都用手動文字呈現\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "網站有多個區塊",
-            "看起來像完整首頁",
-            "有個人作品或學習成果區",
-            "手機版排版不會壞掉"
+            "頁面有「手機測試成功」區塊",
+            "頁面列出手機測試步驟摘要",
+            "頁面同時看得到電腦網址與手機網址",
+            "頁面有電腦 OK、手機 OK、同 Wi-Fi OK 等狀態標籤",
+            "手機打開時也能清楚閱讀這個區塊"
           ]
         }
       ],
       "commonErrors": [
         {
           "id": "stage-2-error-1",
-          "symptom": "修改後網站沒有變",
-          "possibleCause": "改錯檔案、沒有存檔，或瀏覽器沒有重新整理。",
-          "helpPrompt": "我修改了 index.html 或 style.css，但是瀏覽器畫面沒有變。\n\n請教我如何檢查：\n1. 是否修改到正確檔案\n2. 是否已經存檔\n3. 是否需要重新整理瀏覽器\n4. 是否瀏覽器快取造成沒有更新"
+          "symptom": "手機輸入 localhost:3000 打不開",
+          "possibleCause": "localhost 對手機來說是手機自己，不是電腦。",
+          "helpPrompt": "我的網站在電腦 Chrome 可以用 localhost:3000 開啟，但手機輸入 localhost:3000 打不開。\n\n請用繁體中文、一句白話解釋：為什麼手機不能用 localhost。\n並告訴我：\n1. 我應該輸入什麼格式的網址（說明在手機 Chrome 的網址列輸入）\n2. 如何在 VS Code 終端機用 ipconfig 查到電腦的 Wi-Fi IP\n3. 找到 IP 後，手機應該輸入什麼網址（請給一個範例）\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-2-error-2",
-          "symptom": "CSS 沒有效果",
-          "possibleCause": "index.html 沒有正確連結 style.css。",
-          "helpPrompt": "我的 HTML 可以顯示，但 CSS 樣式沒有出現。\n\n我的檔案結構是：\npublic/\n├─ index.html\n├─ style.css\n└─ script.js\n\n請幫我檢查 index.html 應該如何正確連結 style.css。\n請用初學者可以理解的方式說明。"
+          "symptom": "ipconfig 看到很多 IP 不知道選哪個",
+          "possibleCause": "電腦有多個網路介面，學員不知道哪個是 Wi-Fi 的 IPv4。",
+          "helpPrompt": "我在 VS Code 終端機輸入 ipconfig 後看到很多 IP 位址，不知道要用哪一個。\n\n請用繁體中文告訴我：\n1. 要找哪個標題下面的 IP（例如「無線區域網路介面卡 Wi-Fi」）\n2. IPv4 位址長什麼樣子（例如 192.168.x.x）\n3. 哪些 IP 不能用（例如 127.0.0.1、169.254.x.x）\n4. 如果還是看不懂，請讓我把整個 ipconfig 結果貼給你，你幫我找正確的 IP\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-2-error-3",
-          "symptom": "AI 給了太複雜的程式碼",
-          "possibleCause": "提示詞沒有明確限制技術範圍。",
-          "helpPrompt": "剛剛的程式碼太複雜了。\n\n請重新提供一版更簡單的版本。\n\n限制：\n- 不要使用 React\n- 不要使用 Vue\n- 不要使用 Tailwind\n- 不要使用 Bootstrap\n- 不要使用 npm 套件\n- 只使用 HTML 和 CSS\n- 程式碼要適合完全初學者"
+          "symptom": "手機和電腦不在同一個 Wi-Fi",
+          "possibleCause": "手機可能使用行動網路，或連到不同 Wi-Fi。",
+          "helpPrompt": "我的手機連不上電腦上的 Node.js 網站。\n\n請用繁體中文告訴我：\n1. 如何在手機確認目前連到的 Wi-Fi 名稱（操作位置：手機設定 → Wi-Fi）\n2. 如何確認電腦的 Wi-Fi 名稱（操作位置：Windows 右下角工具列的網路圖示）\n3. 如果名稱不同，代表什麼，應該怎麼處理\n4. 手機絕對不能用行動網路（4G/5G）來連電腦上的網站\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
+        },
+        {
+          "id": "stage-2-error-4",
+          "symptom": "server.js 沒有用 0.0.0.0",
+          "possibleCause": "伺服器只監聽 localhost，其他裝置連不進來。",
+          "helpPrompt": "我的 Node.js + Express 網站在電腦 Chrome 可以開啟，但手機用電腦 IP:3000 連不上。\n\n請用繁體中文告訴我：\n1. 可能是什麼原因（一句白話說明 0.0.0.0 和 localhost 的差別）\n2. 如何在 VS Code 裡打開 server.js（操作位置：VS Code 左側檔案總管）\n3. app.listen 那行應該長什麼樣子才對（請提供範例程式碼）\n4. 修改後如何存檔（Ctrl+S）\n5. 如何在 VS Code 終端機重新啟動伺服器（先 Ctrl+C 停止，再 node server.js）\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
+        },
+        {
+          "id": "stage-2-error-5",
+          "symptom": "Windows 防火牆阻擋",
+          "possibleCause": "Windows 不允許其他裝置連到 Node.js。",
+          "helpPrompt": "我的手機和電腦在同一個 Wi-Fi，網址也輸入 http://電腦IP:3000，但手機仍然連不上，出現「找不到網頁」或轉很久沒反應。\n\n請用繁體中文告訴我：\n1. 這可能是 Windows 防火牆的問題（一句白話說明）\n2. 操作位置：Windows 開始選單搜尋「Windows Defender 防火牆」，如何開啟\n3. 如何查看是否有阻擋 Node.js\n4. 第一次執行 node server.js 時，Windows 可能會跳出防火牆詢問視窗，應該點「允許存取」\n5. 如果不確定怎麼設定，請告訴我應該請現場助教協助\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
+        }
+      ],
+      "promptSections": [
+        {
+          "id": "starter",
+          "title": "先複製這段開始",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "content": "我的網站已經可以在電腦用 http://localhost:3000 開啟。\n我想讓手機在同一個 Wi-Fi 下也能打開這個網站。\n請用 Windows 和 VS Code 的情境一步一步教我，不要用雲端部署。\n\n請不要只給我操作指令，也不要一次講太多。\n每一步都請告訴我：\n1. 要在哪裡操作\n2. 要做什麼\n3. 這一步的目的，用一句白話說明\n4. 做完後應該看到什麼\n\n如果需要查 IP，請說明為什麼手機需要用電腦 IP，而不是 localhost。\n如果需要確認 Wi-Fi，請說明為什麼手機和電腦要在同一個 Wi-Fi。\n完成手機可以打開網站後，請停止，提醒我回到課程網頁勾選 checklist，不要自行延伸到部署、ngrok、Live Server 或其他工具。"
+        },
+        {
+          "id": "followups",
+          "title": "如果 AI 回答太難，可以追加",
+          "target": "ChatGPT",
+          "type": "quickReplies",
+          "items": [
+            "請先用一句白話解釋 localhost 和電腦 IP 有什麼不同。",
+            "請一次只給我 1～2 個步驟，等我完成再繼續。",
+            "請明確說明每一步是在 VS Code、Windows 終端機、電腦瀏覽器，還是手機瀏覽器操作。",
+            "如果我要看 ipconfig，請教我怎麼找 Wi-Fi 的 IPv4 位址，並提醒我不要用 127.0.0.1。",
+            "請不要使用 ngrok、Vercel、Netlify、API、雲端部署或任何新套件。",
+            "完成任務二後請停止；如果我問下一步，只提醒我回到課程網頁勾選 checklist，並依照下一張任務卡繼續。"
+          ]
+        },
+        {
+          "id": "full",
+          "title": "想一次講清楚，可以複製完整版本",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "defaultCollapsed": true,
+          "content": "請用 Windows + VS Code 的情境，帶我讓手機連上我電腦上的 Node.js + Express 網站。\n我的網站目前可以在電腦瀏覽器用 http://localhost:3000 開啟。\n請幫我確認 server.js 是否允許同 Wi-Fi 裝置連線，必要時把監聽位置改成 0.0.0.0。\n請教我用 ipconfig 找到電腦的 Wi-Fi IPv4 位址，然後在手機瀏覽器輸入 http://電腦IP:3000 測試。\n每一步請說明操作位置、操作動作、這一步的目的、完成後應該看到什麼。\n限制：不要使用雲端部署、ngrok、API、資料庫或新套件；只使用目前的 Node.js、Express、HTML、CSS、JavaScript 網站。\n\n【完成後停止規則】\n\n完成本任務目標後，請停止。\n不要自行部署到雲端、不要使用 ngrok、不要使用 Vercel 或 Netlify、不要申請網址、不要改網站內容、不要加入互動功能、不要自行進入下一張任務卡。\n如果我回覆「好」、「完成了」、「下一步呢」，請只提醒我：\n「你已經完成任務二。請回到課程網頁勾選 checklist。接下來請依照下一張任務卡繼續。」\n不要自行定義新的下一步。"
         }
       ]
     },
     {
-      "id": "stage-3-mobile-access",
+      "id": "stage-3-customize-content",
       "stage": 3,
-      "title": "任務卡 3：讓手機能連上網站",
-      "shortTitle": "讓手機能連上",
-      "description": "讓手機在與電腦連到相同 Wi-Fi 的情況下，可以開啟電腦上正在執行的網站。",
-      "imageUrl": "/images/missions/mission_3_mobile_connection.png",
-      "estimatedMinutes": "10",
-      "minimumPassLine": "手機連得上網站",
-      "goal": "讓手機在與電腦連到相同 Wi-Fi 的情況下，可以開啟電腦上正在執行的網站。學員會理解 localhost 只代表自己的電腦、手機需要輸入電腦區域網路 IP、Node.js 伺服器需要允許區域網路裝置連線，且 Windows 防火牆可能影響連線。",
-      "fixedPrompt": "你是一位程式教學助教。\n\n我已經完成一個 Node.js + Express 網站，並且可以在電腦瀏覽器輸入 http://localhost:3000 開啟。\n\n現在我想讓手機在同一個 Wi-Fi 下，也能連上我電腦上的網站。\n\n請嚴格遵守以下限制：\n1. 使用 Windows 環境說明。\n2. 不要使用雲端部署。\n3. 不要使用 ngrok。\n4. 不要使用 Vercel、Netlify、GitHub Pages。\n5. 不要使用 React、Vue、TypeScript。\n6. 只使用我目前的 Node.js + Express 網站。\n7. 請一步一步說明，不要一次講太多理論。\n\n請教我完成以下事情：\n1. 如何確認手機和電腦在同一個 Wi-Fi。\n2. 如何查詢電腦的區域網路 IP。\n3. server.js 需要怎麼修改，才能讓手機連線。\n4. 手機瀏覽器應該輸入什麼網址。\n5. 如果手機連不上，該如何檢查 Windows 防火牆。\n6. 常見錯誤有哪些。\n\n請假設我的網站使用 port 3000。",
+      "title": "任務卡 3：修改網站內容",
+      "shortTitle": "修改網站內容",
+      "description": "先在 ChatGPT 聊天窗討論你想做的個人網站，整理好提示詞後，再交給 VS Code Codex 實際修改網頁。",
+      "imageUrl": "/images/missions/mission_3_customize_website.png",
+      "estimatedMinutes": "15-20",
+      "minimumPassLine": "網站有自己的個人內容",
+      "goal": "學員體驗兩種 AI 工具的不同用途：先用 ChatGPT 一般聊天窗釐清自己想做什麼樣的網站、整理需求；再把整理好的提示詞交給 VS Code Codex，讓它實際修改網頁檔案。",
+      "fixedPrompt": "【你可以先這樣問 ChatGPT】\n\n我想把剛剛建立的網站改成自己的個人網站，但我還不知道內容要怎麼寫。\n\n請你現在只扮演「需求整理助手」，不要直接寫程式碼，也不要教我修改檔案。\n\n請先問我幾個簡單問題，幫我整理：\n1. 網站主題\n2. 網站標題\n3. 我的名字或暱稱\n4. 自我介紹\n5. 三個興趣、特色或作品\n6. 喜歡的視覺風格\n\n等我回答完後，請只輸出一段「可以貼到 VS Code Codex 的提示詞」。\n\n請注意：\n- 不要在這個 ChatGPT 聊天窗中繼續實作。\n- 不要直接產生 HTML 或 CSS。\n- 不要教我一步一步修改檔案。\n- 你的最後輸出必須只有「給 VS Code Codex 的提示詞」和一小句提醒我複製到 Codex。\n\n最後請用以下格式輸出：\n\n「以下是請貼到 VS Code Codex 的提示詞：」\n\n```text\n這裡放給 Codex 的提示詞\n```\n\n請複製下面這段，貼到 VS Code Codex，不要在這個 ChatGPT 聊天窗繼續實作。\n\n【如果 ChatGPT 跑去實作，可以追加】\n\n- 請停止寫程式碼，你現在只需要幫我整理需求。\n- 請不要提供 HTML 或 CSS，最後只輸出給 VS Code Codex 的提示詞。\n- 請不要教我怎麼在 VS Code 操作，這些步驟要交給 Codex 說明。\n- 請把 Codex 提示詞放在 ```text 的 code block 裡，方便我複製。\n- 請在輸出後提醒我：複製這段到 VS Code Codex，不要在 ChatGPT 繼續實作。\n\n【整理後可以貼給 ChatGPT 的版本】\n\n你現在只扮演「個人網站需求整理助手」。請用繁體中文先問我幾個簡單問題，幫我整理個人網站內容，包含網站主題、網站標題、名字或暱稱、自我介紹、三個興趣/特色/作品，以及喜歡的視覺風格。\n\n重要限制：你不要直接產生 HTML 或 CSS，不要教我修改檔案，也不要進入實作步驟。你的任務只到「整理出可以貼到 VS Code Codex 的提示詞」為止。\n\n等我回答完後，請輸出標題「以下是請貼到 VS Code Codex 的提示詞：」，接著用 ```text code block 放入一段給 Codex 的提示詞。那段 Codex 提示詞可以要求 Codex 修改 public/index.html 和 public/style.css、產生初學者可讀的 HTML/CSS，並說明 Windows + VS Code 的操作位置。最後請只加一句提醒：「請複製下面這段，貼到 VS Code Codex，不要在這個 ChatGPT 聊天窗繼續實作。」\n\n【完成後停止規則】\n\n你在這個階段只負責需求討論，並產出「請貼到 VS Code Codex 的提示詞」。產出 Codex 提示詞後，請停止。\n不要直接寫 HTML 或 CSS、不要教我怎麼貼檔案、不要主動設計下一版網站、不要詢問是否要美化、不要自行進入互動功能。\n如果我回覆「好」、「完成了」、「繼續」、「下一步呢」，請只提醒我：\n「請複製上面的提示詞，貼到 VS Code Codex。不要在這個 ChatGPT 聊天窗繼續實作。」\n\n你產出的 Codex 提示詞也必須包含這條規則：Codex 完成個人網站內容修改後，請停止，不要自行加入互動功能、JavaScript、更多頁面、作品集升級或下一步；只提醒我回到課程網頁勾選任務三 checklist，下一步依照下一張任務卡。",
       "acceptanceCriteria": [
-        "電腦可以開啟 http://localhost:3000",
-        "電腦可以查到自己的 IPv4 位址",
-        "server.js 已經允許區域網路連線",
-        "手機和電腦連到同一個 Wi-Fi",
-        "手機瀏覽器輸入 http://電腦IP:3000 可以開啟網站",
-        "手機看到的內容和電腦網站相同"
+        "已在 ChatGPT 討論出自己的網站內容",
+        "ChatGPT 有產出一段可以貼到 VS Code Codex 的提示詞",
+        "已把 ChatGPT 產出的提示詞貼到 VS Code Codex",
+        "網站標題已改成自己的內容",
+        "首頁有自己的名字或暱稱",
+        "首頁有一段自我介紹",
+        "首頁有三個興趣、特色或作品項目",
+        "頁面排版比原本更完整，不是純文字堆在一起",
+        "電腦和手機都可以重新整理後看到新的網站內容"
       ],
-      "exampleMobileUrl": "http://192.168.1.25:3000",
+      "verificationMethod": "打開瀏覽器，彼此看隔壁同學的網站，確認每個人的網站內容不同。",
       "advancedChallenges": [
         {
           "level": "Basic",
-          "title": "手機成功開啟網站",
-          "goal": "手機能看到和電腦一樣的網站。",
-          "prompt": "我想完成最基本目標：讓手機在同一個 Wi-Fi 下連到我的 Node.js 網站。\n\n請只教我必要步驟，不要加入額外功能。\n\n我需要知道：\n1. 如何查電腦 IPv4 位址\n2. server.js 要怎麼確認是否允許手機連線\n3. 手機瀏覽器要輸入什麼網址\n4. 如果連不上，最基本要檢查什麼\n\n請用 Windows + Node.js + Express 說明。",
+          "title": "加入一個新的個人內容區塊",
+          "goal": "完成個人網站後，再新增一個小區塊，讓內容更像自己的網站。",
+          "prompt": "你是一位程式教學助教，請用繁體中文協助我完成「先討論、再交給 Codex 修改」的流程。\n\n我已經有一個個人網站，現在想新增一個小的個人內容區塊。\n\n請先幫我整理我要新增的內容，請讓我從下面選一個：\n- 我的學習目標\n- 我的興趣清單\n- 我的作品或成果\n- 今日一句話\n- 聯絡方式\n\n整理完內容後，請輸出一段可以貼到 VS Code Codex 的提示詞，讓 Codex 修改 public/index.html 和 public/style.css。\n\n限制：\n- ChatGPT 階段只整理文字和需求，不直接產生程式碼\n- Codex 階段只修改 public/index.html 和 public/style.css\n- 不修改 server.js\n- 不使用 JavaScript\n- 不使用 API 或資料庫\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 不新增套件\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "手機可以開啟網站",
-            "手機網址格式是 http://電腦IP:3000"
+            "首頁多了一個新的個人內容區塊",
+            "新區塊有清楚標題",
+            "新區塊內容和自己有關，例如學習目標、興趣、作品或聯絡方式",
+            "新區塊有簡單排版，不是文字直接擠在一起"
           ]
         },
         {
           "level": "Plus",
-          "title": "手機版排版優化",
-          "goal": "讓手機看到的網站不只是能開，還要好閱讀。",
-          "prompt": "我的手機已經可以連上網站了。\n\n現在請幫我優化手機版排版。\n\n限制：\n- 只修改 style.css\n- 不要修改 server.js\n- 不要使用 Bootstrap\n- 不要使用 Tailwind\n- 不要使用 React 或 Vue\n- 只使用一般 CSS\n- 程式碼要適合初學者理解\n\n請幫我加入適合手機的 responsive design，包含：\n1. 手機上文字不要太小\n2. 內容不要超出螢幕\n3. 按鈕好點擊\n4. 區塊間距舒適\n5. 電腦版仍然可以正常顯示\n\n請提供完整 style.css。",
+          "title": "調整網站視覺風格",
+          "goal": "讓網站更有個人風格，透過色彩、卡片、間距與手機版排版改善整體質感。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我已經完成個人網站內容，也新增過一個個人內容區塊。\n\n現在我想調整網站視覺風格，讓它更像我自己的風格。\n\n請先問我：\n1. 我想要什麼主色\n2. 我喜歡明亮還是沉穩的感覺\n3. 我想要卡片式排版嗎\n4. 手機版希望看起來更簡潔還是資訊更完整\n\n等我回答後，請幫我調整 public/style.css，必要時可以微調 public/index.html 的 class 或簡單結構。\n\n希望改善：\n- 主色與背景\n- 卡片式排版\n- 區塊間距\n- 按鈕樣式\n- 手機版排版\n\n限制：\n- 主要修改 public/style.css\n- 必要時才微調 public/index.html\n- 不修改 server.js\n- 不使用 Tailwind、Bootstrap 或任何外部框架\n- 不使用 React、Vue、TypeScript\n- 不使用 API 或資料庫\n- CSS 要適合初學者閱讀\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "手機上文字清楚",
-            "不需要左右滑動",
-            "按鈕容易點擊",
-            "區塊沒有擠在一起"
+            "網站有明確主色或視覺風格",
+            "內容區塊看起來更像卡片或分區",
+            "按鈕或重要文字比原本更醒目",
+            "手機版排版比原本更好閱讀"
           ]
         },
         {
           "level": "Challenge",
-          "title": "做一個手機專屬互動區",
-          "goal": "讓網站更像是手機可以操作的小網頁，例如點按鈕後顯示一句話、切換主題色、顯示今日心情、切換圖片或卡片。",
-          "prompt": "我的手機已經可以連上我的 Node.js + Express 網站。\n\n現在我想加入一個適合手機操作的小互動功能。\n\n限制：\n- 只能修改 public/index.html、public/style.css、public/script.js\n- 不要修改 server.js\n- 不要使用 React、Vue、TypeScript\n- 不要使用資料庫\n- 不要使用 API\n- 不要安裝任何新套件\n- 只使用 HTML、CSS、JavaScript\n\n請幫我加入一個簡單互動功能：\n手機點擊按鈕後，畫面會顯示一句隨機鼓勵語。\n\n請提供完整的：\n1. index.html\n2. style.css\n3. script.js\n\n程式碼請保持簡單，並且適合初學者理解。",
+          "title": "建立小型作品集首頁",
+          "goal": "把個人網站整理成更完整的小型作品集首頁，適合展示學習成果。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我想把目前的個人網站升級成一個小型作品集首頁，給進度快的學員做更完整成果。\n\n請先問我：\n1. 我想展示哪些作品或學習成果\n2. 我希望作品集有哪些區塊\n3. 我想要什麼樣的導覽列和整體風格\n\n等我回答後，請幫我設計 public/index.html 和 public/style.css。\n\n作品集首頁建議包含：\n- 導覽列\n- 歡迎區\n- 關於我\n- 作品區\n- 學習成果\n- 聯絡方式\n- 手機版排版\n\n限制：\n- 只修改 public/index.html 和 public/style.css\n- 不修改 server.js\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 不使用 API 或資料庫\n- 不新增套件\n- 程式碼仍需適合初學者理解，請加上簡短中文註解\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "手機可以點擊按鈕",
-            "點擊後畫面有變化",
-            "不需要重新整理頁面",
-            "電腦版也可以使用"
+            "網站有導覽列",
+            "網站有歡迎區或自我介紹區",
+            "網站有作品或學習成果展示區",
+            "網站有聯絡方式或結尾區塊",
+            "手機版打開時排版仍然清楚"
           ]
         }
       ],
       "commonErrors": [
         {
           "id": "stage-3-error-1",
-          "symptom": "手機輸入 localhost:3000 打不開",
-          "possibleCause": "localhost 對手機來說，是手機自己，不是電腦。",
-          "helpPrompt": "我的網站在電腦可以用 localhost:3000 開啟，但是手機輸入 localhost:3000 打不開。\n\n請用初學者可以理解的方式解釋為什麼手機不能用 localhost，並教我應該如何用電腦 IP 連線。"
+          "symptom": "修改後網站沒有變化",
+          "possibleCause": "改錯檔案、沒有存檔，或瀏覽器快取沒有更新。",
+          "helpPrompt": "我修改了 index.html 或 style.css，但瀏覽器畫面沒有變化。\n\n請用繁體中文告訴我：\n1. 如何確認在 VS Code 裡改的是 public/index.html 或 public/style.css（不是其他位置的檔案）\n2. 如何確認已經存檔（按 Ctrl+S，標題列的點消失表示已存）\n3. 如何強制重新整理瀏覽器（按 Ctrl+F5）\n4. 如果還是沒變：如何在 Chrome 開啟無痕模式，輸入 http://localhost:3000 再試一次\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-3-error-2",
-          "symptom": "手機和電腦不在同一個網路",
-          "possibleCause": "手機可能使用行動網路，或連到不同 Wi-Fi。",
-          "helpPrompt": "我的手機連不上電腦上的 Node.js 網站。\n\n請教我如何確認手機和電腦是否在同一個 Wi-Fi 網路下。\n請用 Windows 和手機的情境說明。"
+          "symptom": "CSS 樣式沒有套用",
+          "possibleCause": "index.html 沒有正確連結 style.css。",
+          "helpPrompt": "我的 index.html 可以顯示，但 CSS 樣式完全沒有出現，網頁是純文字沒有任何樣式。\n\n請用繁體中文告訴我：\n1. 如何在 VS Code 打開 public/index.html（操作位置：左側檔案總管）\n2. index.html 裡應該有哪一行連結 style.css（請提供正確範例）\n3. 這個連結要放在 HTML 的哪個位置（例如 head 標籤裡）\n4. 如果連結不對，如何修改並存檔確認\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-3-error-3",
-          "symptom": "server.js 只監聽 localhost",
-          "possibleCause": "伺服器只允許自己電腦連線，其他裝置連不進來。",
-          "suggestedCode": "app.listen(3000, '0.0.0.0', () => {\n  console.log('Server running on http://localhost:3000');\n});",
-          "helpPrompt": "我的 Node.js + Express 網站在電腦可以開啟，但手機用電腦 IP:3000 連不上。\n\n請幫我檢查 server.js 是否只監聽 localhost，並教我如何修改成可以讓同一個 Wi-Fi 的手機連線。\n\n請使用 Express 和 port 3000 的範例。"
+          "symptom": "不知道怎麼把 ChatGPT 討論結果交給 Codex",
+          "possibleCause": "學員不清楚兩個工具的操作界面在哪裡。",
+          "helpPrompt": "我已經在 ChatGPT 聊天窗討論完我的網站內容，但不知道怎麼把結果交給 VS Code Codex。\n\n請用繁體中文告訴我：\n1. ChatGPT 一般聊天窗在哪裡（瀏覽器網址列輸入 chat.openai.com）\n2. VS Code Codex（或 GitHub Copilot Chat）在哪裡（VS Code 左側的 Copilot 圖示，或按 Ctrl+Shift+P 搜尋）\n3. 如何把 ChatGPT 整理好的提示詞複製到 Codex 聊天視窗\n4. Codex 給出程式碼後，要在 VS Code 的哪裡找到對應的檔案來貼上\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-3-error-4",
-          "symptom": "Windows 防火牆阻擋",
-          "possibleCause": "Windows 不允許其他裝置連到 Node.js。",
-          "helpPrompt": "我的手機和電腦在同一個 Wi-Fi，網址也輸入 http://電腦IP:3000，但手機仍然連不上。\n\n請教我如何檢查 Windows 防火牆是否阻擋 Node.js 或 port 3000。\n請用安全、初學者可以理解的方式說明。"
+          "symptom": "AI 給了太複雜或用了不允許的框架",
+          "possibleCause": "提示詞沒有明確限制技術範圍，AI 自動用了 React 或其他框架。",
+          "helpPrompt": "請重新回答。這堂課只允許使用 Node.js、Express、HTML、CSS、JavaScript。\n\n請不要使用以下技術：React、Vue、TypeScript、Tailwind、Bootstrap、npm 套件（除了 Express）、API、資料庫。\n\n請提供只使用 HTML 和 CSS 的版本，程式碼要適合完全沒有程式基礎的初學者，並在 VS Code + Windows 的情境說明每一步怎麼操作。\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
+        }
+      ],
+      "promptSections": [
+        {
+          "id": "starter",
+          "title": "先貼到 ChatGPT 討論需求",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "content": "我想把剛剛建立的網站改成自己的個人網站，但我還不知道內容要怎麼寫。\n\n請你現在只扮演「需求整理助手」，不要直接寫程式碼，也不要教我修改檔案。\n\n請先問我幾個簡單問題，幫我整理網站內容。\n請不要只列問題，請讓我理解每個問題是在幫網站決定什麼。\n每問一個問題時，請用一句白話說明：為什麼這個問題會影響網站內容或畫面。\n\n請幫我整理：\n1. 網站主題\n2. 網站標題\n3. 我的名字或暱稱\n4. 自我介紹\n5. 三個興趣、特色或作品\n6. 喜歡的視覺風格\n\n等我回答完後，請只輸出一段「可以貼到 VS Code Codex 的提示詞」。\n輸出 Codex 提示詞後請停止，不要在這個 ChatGPT 聊天窗繼續實作。\n如果我回覆「好」或「繼續」，請只提醒我複製提示詞到 VS Code Codex，並回到課程網頁勾選 checklist。"
         },
         {
-          "id": "stage-3-error-5",
-          "symptom": "IP 查錯",
-          "possibleCause": "學員可能看到很多 IP，不知道哪一個是 Wi-Fi 的 IPv4。",
-          "helpPrompt": "我在 Windows 輸入 ipconfig 後看到很多 IP 位址。\n\n請教我如何找出目前 Wi-Fi 使用的 IPv4 位址。\n請告訴我哪些 IP 可能是正確的，哪些通常不是我要用的。"
+          "id": "followups",
+          "title": "如果 ChatGPT 跑去實作，可以追加",
+          "target": "ChatGPT",
+          "type": "quickReplies",
+          "items": [
+            "請停止寫程式碼，你現在只需要幫我整理需求。",
+            "請不要提供 HTML 或 CSS，最後只輸出給 VS Code Codex 的提示詞。",
+            "請不要教我怎麼在 VS Code 操作，這些步驟要交給 Codex 說明。",
+            "請把 Codex 提示詞放在 ```text 的 code block 裡，方便我複製。",
+            "請在輸出後提醒我：複製這段到 VS Code Codex，不要在 ChatGPT 繼續實作。",
+            "產出「請貼到 VS Code Codex 的提示詞」後請停止；如果我回覆好或繼續，只提醒我複製上面的提示詞貼到 VS Code Codex。"
+          ]
+        },
+        {
+          "id": "full",
+          "title": "想一次講清楚，可以複製完整版本",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "defaultCollapsed": true,
+          "content": "你現在只扮演「個人網站需求整理助手」。請用繁體中文先問我幾個簡單問題，幫我整理個人網站內容，包含網站主題、網站標題、名字或暱稱、自我介紹、三個興趣/特色/作品，以及喜歡的視覺風格。\n\n重要限制：你不要直接產生 HTML 或 CSS，不要教我修改檔案，也不要進入實作步驟。你的任務只到「整理出可以貼到 VS Code Codex 的提示詞」為止。\n\n等我回答完後，請輸出標題「以下是請貼到 VS Code Codex 的提示詞：」，接著用 ```text code block 放入一段給 Codex 的提示詞。那段 Codex 提示詞可以要求 Codex 修改 public/index.html 和 public/style.css、產生初學者可讀的 HTML/CSS，並說明 Windows + VS Code 的操作位置。最後請只加一句提醒：「請複製下面這段，貼到 VS Code Codex，不要在這個 ChatGPT 聊天窗繼續實作。」\n\n【完成後停止規則】\n\n你在這個階段只負責需求討論，並產出「請貼到 VS Code Codex 的提示詞」。產出 Codex 提示詞後，請停止。\n不要直接寫 HTML 或 CSS、不要教我怎麼貼檔案、不要主動設計下一版網站、不要詢問是否要美化、不要自行進入互動功能。\n如果我回覆「好」、「完成了」、「繼續」、「下一步呢」，請只提醒我：\n「請複製上面的提示詞，貼到 VS Code Codex。不要在這個 ChatGPT 聊天窗繼續實作。」\n\n你產出的 Codex 提示詞也必須包含這條規則：Codex 完成個人網站內容修改後，請停止，不要自行加入互動功能、JavaScript、更多頁面、作品集升級或下一步；只提醒我回到課程網頁勾選任務三 checklist，下一步依照下一張任務卡。"
         }
       ]
     },
@@ -308,67 +417,73 @@
       "stage": 4,
       "title": "任務卡 4：加入互動功能",
       "shortTitle": "加入互動功能",
-      "description": "讓網站不只是靜態頁面，而是可以被使用者操作。",
+      "description": "先在 ChatGPT 討論適合自己網站的簡單互動功能，整理好提示詞後，再交給 VS Code Codex 實際修改網頁。",
       "imageUrl": "/images/missions/mission_4_interactive_features.png",
-      "estimatedMinutes": "10-20",
-      "minimumPassLine": "按鈕點了有反應",
-      "goal": "讓網站不只是靜態頁面，而是可以被使用者操作。學員會理解 HTML 負責畫面內容、CSS 負責樣式、JavaScript 負責互動，並知道不需要後端、不需要資料庫，也能做出互動感。",
-      "fixedPrompt": "你是一位程式教學助教。\n\n我已經完成一個 Node.js + Express 網站，並且可以在電腦和手機上開啟。\n\n我的檔案結構是：\n\nmy-website/\n├─ package.json\n├─ server.js\n└─ public/\n   ├─ index.html\n   ├─ style.css\n   └─ script.js\n\n現在我想加入一個簡單的網頁互動功能。\n\n請嚴格遵守以下限制：\n1. 只能修改 public/index.html、public/style.css、public/script.js。\n2. 不要修改 server.js。\n3. 不要使用 React、Vue、TypeScript。\n4. 不要使用資料庫。\n5. 不要使用 API。\n6. 不要安裝任何新套件。\n7. 不要使用 localStorage。\n8. 不要使用複雜框架。\n9. 程式碼要適合完全初學者理解。\n\n請幫我加入一個簡單互動功能：\n使用者點擊按鈕後，網頁上的文字會改變。\n\n請提供完整的：\n1. index.html\n2. style.css\n3. script.js\n\n請另外用簡單方式解釋：\n- HTML 哪裡是按鈕\n- CSS 哪裡控制外觀\n- JavaScript 哪裡負責點擊後改變文字",
+      "estimatedMinutes": "15-25",
+      "minimumPassLine": "網頁上有按鈕，點了有反應",
+      "goal": "學員理解 HTML 負責網頁上有什麼、CSS 負責網頁長什麼樣子、JavaScript 負責使用者操作後發生什麼變化。透過先在 ChatGPT 討論再交給 Codex 實作的流程，完成一個簡單的前端互動功能。",
+      "fixedPrompt": "【你可以先這樣問 ChatGPT】\n\n我的個人網站已經可以在電腦和手機開啟。\n我想加入一個很簡單的互動功能，但還不確定要做哪一種。\n\n請你現在只扮演「互動需求整理助手」，不要直接寫程式碼，也不要教我修改檔案。\n\n請先問我幾個簡單問題，幫我整理：\n1. 我的網站主題是什麼\n2. 我想讓使用者做什麼互動\n3. 適合我的 3 個簡單互動選項\n4. 我最後選哪一個互動功能\n5. 互動成功時畫面應該有什麼變化\n\n等我回答完後，請只輸出一段「可以貼到 VS Code Codex 的提示詞」。\n\n請注意：\n- 不要在這個 ChatGPT 聊天窗中繼續實作。\n- 不要直接產生 HTML、CSS 或 JavaScript。\n- 不要教我一步一步修改檔案。\n- 不要使用 API、資料庫、localStorage 或任何需要安裝的新套件。\n- 你的最後輸出必須只有「給 VS Code Codex 的提示詞」和一小句提醒我複製到 Codex。\n\n最後請用以下格式輸出：\n\n「以下是請貼到 VS Code Codex 的提示詞：」\n\n```text\n這裡放給 Codex 的提示詞\n```\n\n請複製下面這段，貼到 VS Code Codex，不要在這個 ChatGPT 聊天窗繼續實作。\n\n【如果 ChatGPT 跑去實作，可以追加】\n\n- 請停止寫程式碼，你現在只需要幫我整理互動需求。\n- 請不要提供 HTML、CSS 或 JavaScript，最後只輸出給 VS Code Codex 的提示詞。\n- 請不要教我怎麼在 VS Code 操作，這些步驟要交給 Codex 說明。\n- 請把 Codex 提示詞放在 ```text 的 code block 裡，方便我複製。\n- 請提醒我：複製這段到 VS Code Codex，不要在 ChatGPT 繼續實作。\n\n【整理後可以貼給 ChatGPT 的版本】\n\n你現在只扮演「互動需求整理助手」。請用繁體中文先問我幾個簡單問題，幫我決定一個適合個人網站的簡單前端互動功能，例如點按鈕換文字、隨機鼓勵語、今日心情卡或簡單抽籤。請確認我的網站主題、我想讓使用者做什麼、最後選擇哪個互動，以及操作後畫面應該怎麼變化。\n\n重要限制：你不要直接產生 HTML、CSS 或 JavaScript，不要教我修改檔案，也不要進入實作步驟。你的任務只到「整理出可以貼到 VS Code Codex 的提示詞」為止。\n\n等我回答完後，請輸出標題「以下是請貼到 VS Code Codex 的提示詞：」，接著用 ```text code block 放入一段給 Codex 的提示詞。那段 Codex 提示詞可以要求 Codex 只修改 public/index.html、public/style.css、public/script.js，產生初學者可讀的 HTML/CSS/JavaScript，並說明 Windows + VS Code 的操作位置。請在 Codex 提示詞中限制：不要修改 server.js，不要使用 React、Vue、TypeScript、Tailwind、Bootstrap、API、資料庫、localStorage 或新套件。最後請只加一句提醒：「請複製下面這段，貼到 VS Code Codex，不要在這個 ChatGPT 聊天窗繼續實作。」\n\n【完成後停止規則】\n\n你在這個階段只負責討論互動需求，並產出「請貼到 VS Code Codex 的提示詞」。產出 Codex 提示詞後，請停止。\n不要直接寫 HTML、CSS 或 JavaScript、不要教我修改檔案、不要自行選更多功能、不要自行升級成更完整專案。\n如果我回覆「好」、「完成了」、「繼續」、「下一步呢」，請只提醒我：\n「請複製上面的提示詞，貼到 VS Code Codex。不要在這個 ChatGPT 聊天窗繼續實作。」\n\n你產出的 Codex 提示詞也必須包含這條規則：Codex 完成基本互動功能後，請停止，不要自行加入第二個互動功能、localStorage、API、資料庫、更多動畫、Plus/Challenge 或下一階段；只提醒我回到課程網頁勾選任務四 checklist。若還有時間，再由課程網頁選擇 Basic / Plus / Challenge，不要自行延伸。",
       "acceptanceCriteria": [
-        "網站仍然可以在 localhost:3000 開啟",
-        "手機仍然可以連上網站",
-        "網頁上有一個可點擊的按鈕",
-        "點擊按鈕後，畫面上的文字會改變",
-        "不需要重新整理頁面",
-        "終端機沒有紅色錯誤",
-        "瀏覽器 Console 沒有明顯錯誤"
+        "已在 ChatGPT 討論並決定一個簡單互動功能",
+        "ChatGPT 有產出一段可以貼到 VS Code Codex 的互動功能提示詞",
+        "已把提示詞貼到 VS Code Codex",
+        "網頁上有一個可以點擊的按鈕或互動元素",
+        "點擊或操作後，畫面上有文字、顏色或內容變化",
+        "不需要重新整理頁面，就能看到互動變化",
+        "手機上也可以操作這個互動功能",
+        "重新整理後網站仍然可以正常開啟"
       ],
-      "expectedInteraction": "點擊按鈕 → 頁面文字發生變化",
+      "expectedInteraction": "點擊按鈕 → 頁面上有文字或畫面改變",
       "advancedChallenges": [
         {
           "level": "Basic",
-          "title": "點擊按鈕改變文字",
-          "goal": "完成最基本 JavaScript 互動。",
-          "prompt": "請幫我加入最簡單的 JavaScript 互動功能。\n\n功能：\n點擊按鈕後，網頁上的一句文字從「請點擊按鈕」變成「你成功加入互動功能了！」\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React\n- 不要使用 Vue\n- 不要使用 API\n- 不要使用資料庫\n- 不要修改 server.js\n- 請提供完整 index.html、style.css、script.js\n- 程式碼要適合初學者",
+          "title": "加入第二個互動狀態",
+          "goal": "在原本已有互動功能的基礎上，讓互動多一點狀態或回饋。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我已經完成一個基本互動功能，網頁上有按鈕或互動元素，操作後畫面會改變。\n\n現在我想做一個小幅加強：加入第二個互動狀態。\n\n請先問我目前的互動功能是什麼，然後幫我從下面選一個最簡單的升級：\n1. 原本只顯示一句話，改成 3 句固定訊息輪流顯示\n2. 加入「重設」按鈕\n3. 加入狀態文字，例如：你已經點擊了按鈕\n\n請幫我修改 public/index.html、public/style.css、public/script.js，並說明每一步操作位置。\n\n限制：\n- 只修改 public/index.html、public/style.css、public/script.js\n- 不修改 server.js\n- 不使用 API\n- 不使用資料庫\n- 不使用 localStorage\n- 不新增套件\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- JavaScript 要適合初學者閱讀\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "有一個按鈕",
-            "點擊後文字改變"
+            "原本互動功能之外，多了一個新的畫面狀態或回饋",
+            "點擊後可以看到輪流訊息、重設按鈕或狀態文字其中一種效果",
+            "不需要重新整理頁面就能看到互動變化",
+            "手機上也可以操作這個互動"
           ]
         },
         {
           "level": "Plus",
-          "title": "隨機顯示內容",
-          "goal": "讓互動更有趣，每次點擊出現不同文字，例如隨機鼓勵語、今日任務、心情、幸運顏色或午餐建議。",
-          "prompt": "請幫我把網站互動功能升級成「隨機訊息產生器」。\n\n功能：\n使用者每次點擊按鈕後，畫面會隨機顯示一句不同的訊息。\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React\n- 不要使用 Vue\n- 不要使用 API\n- 不要使用資料庫\n- 不要使用外部套件\n- 不要修改 server.js\n- 訊息直接寫在 script.js 的陣列裡\n- 程式碼要適合初學者理解\n\n請提供完整的：\n1. index.html\n2. style.css\n3. script.js",
+          "title": "加入隨機或視覺效果",
+          "goal": "讓互動更有趣，加入隨機訊息、顏色變化或簡單動畫。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我已經完成基本互動，也加入了一個小的互動狀態。\n\n現在我想讓互動更有趣，請幫我加入隨機或視覺效果。\n\n請先問我想做哪一種：\n1. 點擊後隨機顯示不同訊息\n2. 點擊後改變顏色\n3. 加入簡單 CSS 動畫或卡片淡入效果\n\n請幫我修改 public/index.html、public/style.css、public/script.js。\n\n限制：\n- 所有文字或選項直接寫在 script.js 的陣列裡\n- 不使用 API\n- 不使用資料庫\n- 不使用 localStorage\n- 不新增套件\n- 不修改 server.js\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 程式碼要適合初學者理解，請說明主要邏輯\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "criteria": [
-            "點擊按鈕會出現訊息",
-            "多點幾次會出現不同內容",
-            "互動不需要重新整理頁面"
+            "多次點擊可以看到不同訊息、顏色或動畫效果",
+            "互動後畫面變化比原本更明顯",
+            "頁面上有清楚的互動結果區",
+            "手機上操作時也能看到效果"
           ]
         },
         {
           "level": "Challenge",
-          "title": "做一個小型互動作品",
-          "goal": "讓程度較好的學員做出一個有展示效果的小作品。建議三選一：抽籤小工具、今日心情卡、簡單待辦清單。",
+          "title": "做一個完整小互動作品",
+          "goal": "把互動功能整理成可以展示的小作品，例如抽籤工具、今日心情卡或簡單待辦清單。",
+          "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我已經完成基本互動與小幅升級。現在我想做一個可以展示的完整小互動作品。\n\n請先讓我從三個方向選一個：\n1. 抽籤小工具\n2. 今日心情卡\n3. 簡單待辦清單\n\n選定後，請幫我修改 public/index.html、public/style.css、public/script.js，讓作品有清楚標題、操作區、結果區與手機可操作的排版。\n\n限制：\n- 只修改 public/index.html、public/style.css、public/script.js\n- 不修改 server.js\n- 不使用 API、資料庫、localStorage\n- 不安裝套件\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 手機上要可以操作\n- 程式碼要適合初學者理解\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。",
           "options": [
             {
               "title": "抽籤小工具",
-              "prompt": "請幫我把網站做成一個簡單的「抽籤小工具」。\n\n功能：\n1. 使用者點擊「抽一張」按鈕\n2. 畫面顯示一張結果卡片\n3. 結果從幾個固定選項中隨機出現\n4. 每次點擊可能出現不同結果\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React、Vue、TypeScript\n- 不要使用 API\n- 不要使用資料庫\n- 不要使用圖片\n- 不要安裝任何套件\n- 不要修改 server.js\n- 程式碼要適合初學者理解\n\n請提供完整：\n1. index.html\n2. style.css\n3. script.js"
+              "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我想把目前的互動功能升級成一個可以展示的 Challenge 小作品：「抽籤小工具」。\n\n功能說明：\n1. 使用者點擊「抽一張」按鈕\n2. 畫面顯示一張結果卡片\n3. 結果從幾個固定選項中隨機出現\n4. 每次點擊可能出現不同結果\n5. 手機上也能順利點擊與閱讀\n\n請說明每一步的操作位置，並提供完整 public/index.html、public/style.css、public/script.js。\n\n限制：\n- 只修改 public/index.html、public/style.css、public/script.js\n- 不修改 server.js\n- 不使用 API、資料庫、localStorage\n- 不安裝任何套件\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 選項直接寫在 script.js 的陣列裡\n- 程式碼要適合初學者，主要區塊請加簡短中文說明\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。"
             },
             {
               "title": "今日心情卡",
-              "prompt": "請幫我把網站做成一個簡單的「今日心情卡」。\n\n功能：\n1. 使用者點擊不同心情按鈕\n2. 畫面顯示對應的文字\n3. 不同心情有不同背景或卡片樣式\n4. 手機上也可以正常操作\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React、Vue、TypeScript\n- 不要使用 API\n- 不要使用資料庫\n- 不要安裝任何套件\n- 不要修改 server.js\n- 程式碼要適合初學者理解\n\n請提供完整：\n1. index.html\n2. style.css\n3. script.js"
+              "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我想把目前的互動功能升級成一個可以展示的 Challenge 小作品：「今日心情卡」。\n\n功能說明：\n1. 使用者點擊不同心情按鈕，例如開心、普通、疲倦\n2. 畫面顯示對應的文字\n3. 不同心情有不同背景色或卡片樣式\n4. 手機上也可以正常操作\n\n請說明每一步的操作位置，並提供完整 public/index.html、public/style.css、public/script.js。\n\n限制：\n- 只修改 public/index.html、public/style.css、public/script.js\n- 不修改 server.js\n- 不使用 API、資料庫、localStorage\n- 不安裝任何套件\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 心情文字與樣式對應直接寫在前端程式碼裡\n- 程式碼要適合初學者，主要區塊請加簡短中文說明\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。"
             },
             {
               "title": "簡單待辦清單",
-              "prompt": "請幫我把網站做成一個非常簡單的待辦清單。\n\n功能：\n1. 使用者可以輸入一件事情\n2. 點擊按鈕後，事情會出現在畫面上\n3. 不需要儲存資料\n4. 重新整理後資料消失也沒關係\n\n限制：\n- 只使用 HTML、CSS、JavaScript\n- 不要使用 React、Vue、TypeScript\n- 不要使用 API\n- 不要使用資料庫\n- 不要使用 localStorage\n- 不要安裝任何套件\n- 不要修改 server.js\n- 程式碼要適合初學者理解\n\n請提供完整：\n1. index.html\n2. style.css\n3. script.js"
+              "prompt": "你是一位程式教學助教，請用繁體中文、Windows + VS Code 情境說明。\n\n我想把目前的互動功能升級成一個可以展示的 Challenge 小作品：「簡單待辦清單」。\n\n功能說明：\n1. 使用者可以輸入一件事情\n2. 點擊「新增」按鈕後，這件事出現在清單上\n3. 可以加上簡單的清空或完成提示\n4. 不需要儲存資料，重新整理後清單消失也沒關係\n5. 手機上也能輸入和點擊\n\n請說明每一步的操作位置，並提供完整 public/index.html、public/style.css、public/script.js。\n\n限制：\n- 只修改 public/index.html、public/style.css、public/script.js\n- 不修改 server.js\n- 不使用 API、資料庫、localStorage\n- 不安裝任何套件\n- 不使用 React、Vue、TypeScript、Tailwind、Bootstrap\n- 所有互動只在瀏覽器前端完成\n- 程式碼要適合初學者，主要區塊請加簡短中文說明\n\n【挑戰完成後停止規則】\n\n完成這個挑戰的目標後，請停止。\n不要自行延伸到 Basic、Plus、Challenge、下一個挑戰或其他功能。\n請提醒我：\n「請回到課程網頁勾選這個挑戰的 checklist。如果要做下一個挑戰，請從課程網頁複製下一段提示詞。」\n不要自行定義新的下一步。"
             }
           ],
           "criteria": [
-            "網站有明確互動主題",
-            "使用者點擊或輸入後，畫面會改變",
-            "手機可以操作",
-            "沒有使用超出課程範圍的技術"
+            "網站有明確的小互動作品主題",
+            "頁面有清楚標題",
+            "頁面有操作區，例如按鈕或輸入框",
+            "頁面有結果區，使用者操作後會更新",
+            "手機上可以正常操作與閱讀"
           ]
         }
       ],
@@ -376,26 +491,57 @@
         {
           "id": "stage-4-error-1",
           "symptom": "按鈕沒有反應",
-          "possibleCause": "script.js 沒有正確連結，或 id 名稱對不起來。",
-          "helpPrompt": "我的網站按鈕點下去沒有反應。\n\n我的檔案有 index.html、style.css、script.js。\n\n請幫我檢查：\n1. index.html 是否正確連結 script.js\n2. button 的 id 是否和 script.js 裡的一樣\n3. JavaScript 是否有錯誤\n4. 要如何用瀏覽器 Console 檢查錯誤\n\n請用初學者可以理解的方式說明。"
+          "possibleCause": "script.js 沒有正確連結，或 HTML 裡的 id 和 JavaScript 裡的不一樣。",
+          "helpPrompt": "我的網站按鈕點下去沒有任何反應。\n\n請用繁體中文告訴我：\n1. 如何在 VS Code 左側檔案總管打開 public/index.html\n2. 確認 HTML 最下方有這行連結 script.js（請給我正確範例）\n3. 如何打開瀏覽器的錯誤紀錄（按 F12 打開開發者工具，點 Console 分頁）\n4. 如果 Console 有紅色錯誤訊息，請讓我把錯誤訊息截圖或複製給 AI 協助排查\n5. 常見原因：HTML 裡按鈕的 id 和 script.js 裡找到的 id 名稱不一樣\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-4-error-2",
-          "symptom": "畫面變空白",
-          "possibleCause": "AI 產生的 HTML 結構有錯，或貼程式碼時覆蓋錯檔案。",
-          "helpPrompt": "我修改程式碼後，網頁變成空白。\n\n請一步一步教我如何檢查：\n1. index.html 是否還有內容\n2. 是否把 CSS 或 JavaScript 貼到錯誤檔案\n3. 瀏覽器 Console 是否有錯誤\n4. 如何回到上一個可運作版本"
+          "symptom": "網頁變空白",
+          "possibleCause": "貼程式碼時覆蓋到錯誤的檔案，或 HTML 結構有問題。",
+          "helpPrompt": "我修改程式碼後，在 Chrome 輸入 http://localhost:3000，網頁變成空白。\n\n請用繁體中文一步一步告訴我：\n1. 如何在 VS Code 左側檔案總管打開 public/index.html，確認裡面還有內容\n2. 如何按 F12 打開 Chrome 開發者工具，在 Console 分頁查看是否有紅色錯誤訊息\n3. 如果 index.html 變空了：如何請 Codex 重新給一份完整的 index.html 內容\n4. 貼程式碼時要注意：確認是在 VS Code 裡打開正確的檔案，而不是貼到終端機裡\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-4-error-3",
-          "symptom": "AI 給了後端 API 或資料庫",
-          "possibleCause": "挑戰功能描述太自由，AI 自動擴大架構。",
-          "helpPrompt": "請不要使用後端 API、資料庫、fetch、Express route 或任何新套件。\n\n我要的互動功能只需要在瀏覽器前端完成。\n\n請重新提供一版，只修改：\n- public/index.html\n- public/style.css\n- public/script.js\n\n不要修改 server.js。"
+          "symptom": "AI 給了後端 API 或需要安裝套件的做法",
+          "possibleCause": "提示詞沒有明確限制，AI 自動加入了後端或複雜功能。",
+          "helpPrompt": "請重新回答。這堂課的互動功能只需要在瀏覽器前端完成。\n\n請不要使用：\n- 後端 API 或 Express route\n- fetch 或 axios\n- 資料庫\n- localStorage\n- 任何需要 npm install 的新套件\n\n請重新提供一版，只修改：\n- public/index.html\n- public/style.css\n- public/script.js\n\n不要修改 server.js。\n所有功能都只用 HTML、CSS、JavaScript 完成，程式碼要適合完全沒有程式基礎的初學者。\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
         },
         {
           "id": "stage-4-error-4",
           "symptom": "手機可以開網站，但按鈕不好點",
           "possibleCause": "按鈕太小，手機排版沒有優化。",
-          "helpPrompt": "我的網站在手機上可以開啟，但是按鈕太小、不好點。\n\n請幫我修改 CSS，讓手機上：\n1. 按鈕更大\n2. 文字更清楚\n3. 區塊間距更舒服\n4. 不需要左右滑動\n\n限制：\n- 只修改 style.css\n- 不要使用外部框架\n- 請提供完整 style.css"
+          "helpPrompt": "我的網站在手機上可以開啟，但按鈕太小、很難點。\n\n請用繁體中文告訴我：\n1. 操作位置：VS Code 左側檔案總管，點開 public/style.css\n2. 如何讓按鈕在手機上更大（請提供 CSS 範例）\n3. 如何讓按鈕的點擊區域更大（padding 的概念）\n4. 修改後 Ctrl+S 存檔，在手機重新整理確認效果\n\n限制：\n- 只修改 public/style.css\n- 不要使用外部框架\n- 請提供完整 style.css\n\n【排錯完成後停止規則】\n\n排除錯誤後，請停止在原任務目標。\n不要自行加入新功能、新工具或新的下一步。\n請提醒我回到課程網頁確認 checklist。"
+        }
+      ],
+      "promptSections": [
+        {
+          "id": "starter",
+          "title": "先貼到 ChatGPT 討論互動需求",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "content": "我的個人網站已經可以在電腦和手機開啟。\n我想加入一個很簡單的互動功能，但還不確定要做哪一種。\n\n請你現在只扮演「互動需求整理助手」，不要直接寫程式碼，也不要教我修改檔案。\n\n請先用白話說明：\nHTML 負責網頁上有什麼，CSS 負責網頁長什麼樣子，JavaScript 負責使用者操作後發生什麼變化。\n\n接著請問我幾個簡單問題。\n請不要只列問題，請讓我理解每個問題是在幫互動功能決定什麼。\n每問一個問題時，請用一句白話說明：為什麼這個問題會影響互動功能設計。\n\n請幫我整理：\n1. 我的網站主題是什麼\n2. 我想讓使用者做什麼互動\n3. 適合我的 3 個簡單互動選項\n4. 我最後選哪一個互動功能\n5. 互動成功時畫面應該有什麼變化\n\n等我回答完後，請只輸出一段「可以貼到 VS Code Codex 的提示詞」。\n輸出 Codex 提示詞後請停止，不要在這個 ChatGPT 聊天窗繼續實作。\n如果我回覆「好」或「繼續」，請只提醒我複製提示詞到 VS Code Codex，並回到課程網頁勾選 checklist。"
+        },
+        {
+          "id": "followups",
+          "title": "如果 ChatGPT 跑去實作，可以追加",
+          "target": "ChatGPT",
+          "type": "quickReplies",
+          "items": [
+            "請停止寫程式碼，你現在只需要幫我整理互動需求。",
+            "請不要提供 HTML、CSS 或 JavaScript，最後只輸出給 VS Code Codex 的提示詞。",
+            "請不要教我怎麼在 VS Code 操作，這些步驟要交給 Codex 說明。",
+            "請把 Codex 提示詞放在 ```text 的 code block 裡，方便我複製。",
+            "請提醒我：複製這段到 VS Code Codex，不要在 ChatGPT 繼續實作。",
+            "產出「請貼到 VS Code Codex 的提示詞」後請停止；如果我回覆好或繼續，只提醒我複製上面的提示詞貼到 VS Code Codex。"
+          ]
+        },
+        {
+          "id": "full",
+          "title": "想一次講清楚，可以複製完整版本",
+          "target": "ChatGPT",
+          "type": "copyBlock",
+          "defaultCollapsed": true,
+          "content": "你現在只扮演「互動需求整理助手」。請用繁體中文先問我幾個簡單問題，幫我決定一個適合個人網站的簡單前端互動功能，例如點按鈕換文字、隨機鼓勵語、今日心情卡或簡單抽籤。請確認我的網站主題、我想讓使用者做什麼、最後選擇哪個互動，以及操作後畫面應該怎麼變化。\n\n重要限制：你不要直接產生 HTML、CSS 或 JavaScript，不要教我修改檔案，也不要進入實作步驟。你的任務只到「整理出可以貼到 VS Code Codex 的提示詞」為止。\n\n等我回答完後，請輸出標題「以下是請貼到 VS Code Codex 的提示詞：」，接著用 ```text code block 放入一段給 Codex 的提示詞。那段 Codex 提示詞可以要求 Codex 只修改 public/index.html、public/style.css、public/script.js，產生初學者可讀的 HTML/CSS/JavaScript，並說明 Windows + VS Code 的操作位置。請在 Codex 提示詞中限制：不要修改 server.js，不要使用 React、Vue、TypeScript、Tailwind、Bootstrap、API、資料庫、localStorage 或新套件。最後請只加一句提醒：「請複製下面這段，貼到 VS Code Codex，不要在這個 ChatGPT 聊天窗繼續實作。」\n\n【完成後停止規則】\n\n你在這個階段只負責討論互動需求，並產出「請貼到 VS Code Codex 的提示詞」。產出 Codex 提示詞後，請停止。\n不要直接寫 HTML、CSS 或 JavaScript、不要教我修改檔案、不要自行選更多功能、不要自行升級成更完整專案。\n如果我回覆「好」、「完成了」、「繼續」、「下一步呢」，請只提醒我：\n「請複製上面的提示詞，貼到 VS Code Codex。不要在這個 ChatGPT 聊天窗繼續實作。」\n\n你產出的 Codex 提示詞也必須包含這條規則：Codex 完成基本互動功能後，請停止，不要自行加入第二個互動功能、localStorage、API、資料庫、更多動畫、Plus/Challenge 或下一階段；只提醒我回到課程網頁勾選任務四 checklist。若還有時間，再由課程網頁選擇 Basic / Plus / Challenge，不要自行延伸。"
         }
       ]
     }
@@ -404,30 +550,34 @@
     {
       "stage": 1,
       "title": "啟動網站",
-      "estimatedMinutes": "10",
-      "goal": "localhost:3000 能看到網站",
-      "minimumPassLine": "電腦看得到網站"
+      "estimatedMinutes": "10-15",
+      "goal": "確認 VS Code 和 Node.js 可用，在電腦瀏覽器看到 localhost:3000",
+      "minimumPassLine": "電腦瀏覽器看得到網站"
     },
     {
       "stage": 2,
-      "title": "修改網站內容",
-      "estimatedMinutes": "10",
-      "goal": "網站變成自己的個人網站",
-      "minimumPassLine": "網站有自己的內容"
+      "title": "讓手機能連上",
+      "estimatedMinutes": "10-15",
+      "goal": "手機在同一個 Wi-Fi 下可以開啟電腦上的網站",
+      "minimumPassLine": "手機可以連上電腦的網站"
     },
     {
       "stage": 3,
-      "title": "讓手機能連上",
-      "estimatedMinutes": "10",
-      "goal": "手機可以開啟電腦上的網站",
-      "minimumPassLine": "手機連得上網站"
+      "title": "修改網站內容",
+      "estimatedMinutes": "15-20",
+      "goal": "先在 ChatGPT 討論，再交給 Codex 把網站改成自己的個人網站",
+      "minimumPassLine": "網站有自己的個人內容"
     },
     {
       "stage": 4,
       "title": "加入互動功能",
-      "estimatedMinutes": "10-20",
-      "goal": "網站可以被點擊、操作、產生變化",
-      "minimumPassLine": "按鈕點了有反應"
+      "estimatedMinutes": "15-25",
+      "goal": "先在 ChatGPT 討論互動設計，再交給 Codex 讓網站可以被點擊操作",
+      "minimumPassLine": "網頁上有按鈕，點了有反應"
     }
-  ]
+  ],
+  "stopAfterTaskReminder": {
+    "title": "完成後停止",
+    "content": "完成目前任務目標後，請停止，不要自行延伸下一個目標。請提醒學員回到課程網頁勾選 checklist，下一步由下一張任務卡決定。"
+  }
 }

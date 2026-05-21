@@ -5,9 +5,12 @@ import Checklist from './Checklist.jsx';
 import CopyableCodeBlock from './CopyableCodeBlock.jsx';
 import LockIcon from './icons/LockIcon.jsx';
 import HelpSystem from './HelpSystem.jsx';
+import PromptSections from './PromptSections.jsx';
 
 function TaskDetailPanel({ task, taskProgress, layout = 'sidebar' }) {
   const acceptanceState = taskProgress.getAcceptanceState(task.id);
+  const hasPromptSections =
+    Array.isArray(task.promptSections) && task.promptSections.length > 0;
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const layoutClass =
     layout === 'standalone'
@@ -43,11 +46,15 @@ function TaskDetailPanel({ task, taskProgress, layout = 'sidebar' }) {
         </DetailSection>
 
         <DetailSection title="Fixed Prompt">
-          <CopyableCodeBlock
-            label="Fixed Prompt"
-            value={task.fixedPrompt}
-            maxHeight="max-h-80"
-          />
+          {hasPromptSections ? (
+            <PromptSections sections={task.promptSections} />
+          ) : (
+            <CopyableCodeBlock
+              label="Fixed Prompt"
+              value={task.fixedPrompt}
+              maxHeight="max-h-80"
+            />
+          )}
         </DetailSection>
 
         <DetailSection title="Advanced Challenges">

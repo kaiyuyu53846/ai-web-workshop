@@ -1,712 +1,678 @@
 # AI 協作任務卡 — AI Onboarding README
 
-> **For AI assistants (Claude Code, Codex, ChatGPT, Cursor, Copilot):**
-> This README is designed as an onboarding document. Read it top to bottom before touching any file.
-> The most critical sections for safe editing are **§4 Core Architecture**, **§6 State / Progress Logic**, and **§9 AI Collaboration Notes**.
-
----
-
-## Table of Contents
-
-1. [Project Overview](#1-project-overview)
-2. [Tech Stack](#2-tech-stack)
-3. [Project Structure](#3-project-structure)
-4. [Core Architecture](#4-core-architecture)
-5. [Important Components](#5-important-components)
-6. [State / Progress Logic](#6-state--progress-logic)
-7. [Styling Rules](#7-styling-rules)
-8. [Development Guide](#8-development-guide)
-9. [AI Collaboration Notes](#9-ai-collaboration-notes)
-10. [Future Expansion](#10-future-expansion)
-11. [Architecture Improvement Suggestions](#11-architecture-improvement-suggestions)
+> **For AI assistants:**
+> Please read this README before editing files.
+> The most important sections are **Project Overview**, **Core Architecture**, **State / Progress Logic**, **Task Card Data Model**, and **AI Collaboration Notes**.
 
 ---
 
 ## 1. Project Overview
 
-### What Is This?
+This project is a **React + Vite task-card teaching interface** for a workshop called **AI 協作建站實作課**.
 
-This is a **React-based interactive workshop interface** — a task card system for an in-person workshop titled *"AI 協作建站實作課"* (AI Collaborative Web Building Practical Course). The workshop is run at Quanta Computer as an internal tech sharing session.
+It is important to distinguish two different websites:
 
-**This project is the instructor interface / course guide**, not the website that students build. Students look at this interface for step-by-step instructions, then create their own Node.js + Express website in a separate folder.
+- **This repository** is the course interface. It shows task cards, checklists, prompts, advanced challenges, and help prompts.
+- **The learner's website** is a separate beginner project that students build during the workshop using **Node.js, Express, HTML, CSS, and JavaScript**.
 
-### Core Features
+Students are absolute beginners. They read a task card, copy a prompt into ChatGPT or VS Code Codex, complete the current task, then return to this course page to check the checklist.
 
-- **4 sequentially-unlocking task cards** — students must complete each task before the next one unlocks
-- **Acceptance criteria checklists** — structured pass/fail requirements per task
-- **Fixed Prompts** — pre-written, copy-ready prompts for Claude; students paste these into Claude to get started
-- **Advanced Challenges** — 3 difficulty levels (Basic → Plus → Challenge) per task, unlocked progressively
-- **Help / Hint System** — common errors with expandable copy-ready debug prompts
-- **Clipboard support with 3-tier fallback** — works on LAN (non-HTTPS) environments
+The course is intentionally **task-card driven**. AI should not freely invent the next lesson, next feature, new tool, deployment step, framework, database, or API integration. The next step must come from the next task card in this interface.
 
-### Use Context
+Current task sequence:
 
-| Who | What they do |
-|-----|-------------|
-| Instructor | Runs this interface on a projected screen or shared URL |
-| Students | Follow tasks on their own device; open the detail panel to copy prompts into Claude |
-| Claude (AI) | Receives the Fixed Prompt from students, guides them step by step |
+1. **啟動網站** — create a minimal Node.js + Express website and see `Hello My Website`.
+2. **讓手機能連上網站** — open the computer-hosted local website from a phone on the same Wi-Fi.
+3. **修改網站內容** — discuss personal website content in ChatGPT, then give a Codex prompt to update the learner's website.
+4. **加入互動功能** — discuss a simple interaction in ChatGPT, then give a Codex prompt to update HTML/CSS/JavaScript.
 
-Students are absolute beginners. The interface is deliberately opinionated: only 4 tasks, fixed technology constraints, pre-written prompts.
+Course design principles:
 
-### Completion Status
-
-| Area | Status |
-|------|--------|
-| UI / visual design | Complete |
-| All 4 task cards with content | Complete |
-| Unlock / progression logic | Complete |
-| Clipboard copy (incl. LAN fallback) | Complete |
-| Mobile responsive layout | Complete |
-| Production build | Complete (`dist/` committed) |
-| Progress persistence (localStorage) | **Not implemented** (intentional — single-session workshop) |
-| Backend / API | **Not applicable** (pure frontend) |
+- The course page controls progression; AI does not define the next step.
+- Prompts are for AI constraints, workflow guidance, and beginner-friendly instruction.
+- Checklists are for learner-visible outcomes, not code audits.
+- Checklist items must be confirmable by sight or simple operation.
+- Task 3 and Task 4 use a two-stage workflow: ChatGPT discusses requirements, then VS Code Codex implements.
+- After a task or challenge is complete, AI should stop and remind the learner to return to the course page.
 
 ---
 
 ## 2. Tech Stack
 
-| Category | Technology | Version | Purpose |
-|----------|-----------|---------|---------|
-| Framework | **React** | 18 (latest) | Component rendering, state management |
-| Language | **JavaScript** | ES2022+ | No TypeScript; JSX only |
-| Build tool | **Vite** | 8 (latest) | Dev server, HMR, production bundle |
-| Styling | **Tailwind CSS** | 4 (latest) | Utility-first styling via `@tailwindcss/vite` plugin |
-| Animation | *(none — pure CSS)* | — | `@keyframes` in `styles.css`; no Framer Motion or GSAP |
-| State management | **React `useState`** | built-in | No Context, no Redux, no Zustand |
-| Routing | *(none)* | — | View switching is state-driven (`isDetailMode` boolean in `TaskBoard`) |
-| Package manager | **npm** | — | `package-lock.json` present |
-| Icons | *(inline SVG)* | — | No icon library; icons are hand-authored SVG components |
-| CSS reset | *(minimal)* | — | `box-sizing`, `margin: 0`, `font-family` in `styles.css` |
+Actual stack from `package.json`:
 
-> **⚠️ Assumption:** All dependencies use `"latest"` in `package.json`. This means versions are not pinned. See §11 for the risk this poses.
+| Area | Technology | Notes |
+| --- | --- | --- |
+| Framework | React | JSX only; no TypeScript |
+| Build tool | Vite | `vite --host 0.0.0.0` for LAN-friendly dev server |
+| Styling | Tailwind CSS 4 via `@tailwindcss/vite` | Utility classes plus small custom CSS |
+| Language | JavaScript / JSX | No TypeScript |
+| Package manager | npm | `package-lock.json` is present |
+| Backend | None | This is a static frontend app |
+| Database | None | No persistence layer |
+| API | None | Static JSON import only |
+| Routing | None | View switching is local React state |
+| Progress persistence | None | No localStorage; refresh resets progress |
+| Icons | Inline SVG components | No external icon library |
+| Animation | CSS animations | No Framer Motion or animation dependency |
+
+Scripts:
+
+```bash
+npm run dev      # vite --host 0.0.0.0
+npm run build    # vite build
+npm run preview  # vite preview --host 0.0.0.0
+```
+
+Dependencies are currently set to `"latest"`, so future installs may pick up newer major versions. Be careful when changing dependency-related files.
 
 ---
 
 ## 3. Project Structure
 
-```
+```text
 ai-web-workshop/
-│
-├── index.html                        # HTML entry point (lang="zh-Hant", CSP meta tag)
-├── vite.config.js                    # Vite config: react() + tailwindcss() plugins
-├── package.json                      # Scripts + dependencies (all pinned to "latest")
-├── package-lock.json                 # Locked dependency tree
-├── .gitignore                        # Ignores: node_modules/, .env*, .claude/settings.local.json
-│
-├── task_cards_for_codex.json         # ⚠️ Duplicate of src/data/taskCards.json (see §11)
-│
-├── dist/                             # Production build output (committed to git)
+├── README.md
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+├── task_cards_for_codex.json
+├── public/
+│   └── images/
+│       └── missions/
+│           ├── mission_1_website_startup.png
+│           ├── mission_2_mobile_connection.png
+│           ├── mission_3_customize_website.png
+│           └── mission_4_interactive_features.png
+├── dist/
 │   ├── index.html
 │   ├── assets/
-│   │   ├── index-*.css
-│   │   └── index-*.js
-│   └── images/missions/              # 4 task card PNG images
-│
-├── public/
-│   └── images/missions/              # Source images served by dev server
-│       ├── mission_1_website_startup.png
-│       ├── mission_2_customize_website.png
-│       ├── mission_3_mobile_connection.png
-│       └── mission_4_interactive_features.png
-│
-└── src/
-    ├── main.jsx                      # React root: createRoot → <App /> with StrictMode
-    ├── App.jsx                       # Root component: background, header, <TaskBoard>
-    ├── styles.css                    # Global styles + Tailwind import + CSS animations
-    │
-    ├── data/
-    │   └── taskCards.json            # ★ SINGLE SOURCE OF TRUTH for all course content
-    │
-    ├── hooks/
-    │   └── useTaskProgress.js        # ★ Core progression logic (unlock rules, state)
-    │
-    ├── utils/
-    │   ├── copyToClipboard.js        # Clipboard API with 3-tier fallback
-    │   └── challengeUtils.js         # getChallengePrompt() — resolves prompt field from challenge object
-    │
-    └── components/
-        ├── icons/
-        │   └── LockIcon.jsx          # Shared SVG lock icon (used in MissionRoute + TaskDetailPanel)
-        │
-        ├── TaskBoard.jsx             # ★ View router: board mode ↔ detail mode
-        ├── MissionRoute.jsx          # Right sidebar: task route list + RouteNode buttons
-        ├── TaskCard.jsx              # 3D animated task card (board preview)
-        ├── TaskDetailPanel.jsx       # ★ Detail view: checklist, prompt, challenges, help
-        ├── HelpSystem.jsx            # Collapsible help section + error cards
-        ├── ChallengeHint.jsx         # Expandable "提示詞" button per challenge
-        ├── Checklist.jsx             # Reusable checkbox list (acceptance + challenge criteria)
-        └── CopyableCodeBlock.jsx     # Code/prompt display block with copy button
+│   └── images/
+│       └── missions/
+├── src/
+│   ├── main.jsx
+│   ├── App.jsx
+│   ├── styles.css
+│   ├── data/
+│   │   └── taskCards.json
+│   ├── hooks/
+│   │   └── useTaskProgress.js
+│   ├── utils/
+│   │   ├── challengeUtils.js
+│   │   └── copyToClipboard.js
+│   └── components/
+│       ├── TaskBoard.jsx
+│       ├── TaskCard.jsx
+│       ├── MissionRoute.jsx
+│       ├── TaskDetailPanel.jsx
+│       ├── PromptSections.jsx
+│       ├── CopyableCodeBlock.jsx
+│       ├── ChallengeHint.jsx
+│       ├── Checklist.jsx
+│       ├── HelpSystem.jsx
+│       └── icons/
+│           └── LockIcon.jsx
 ```
 
-### Folder Responsibilities
+Important paths:
 
-| Folder | Responsibility |
-|--------|---------------|
-| `src/data/` | **All course content lives here.** Editing `taskCards.json` changes what students see. Nothing else needs changing for content updates. |
-| `src/hooks/` | Business logic only. `useTaskProgress.js` owns the entire progression state machine. No UI code here. |
-| `src/utils/` | Pure functions with no React dependencies. Safe to unit test in isolation. |
-| `src/components/icons/` | Shared SVG icon components. Add new icons here when needed. |
-| `src/components/` | All React UI components. Each file has a single primary responsibility after refactoring. |
-| `public/images/` | Static assets served at `/images/…` path. Referenced by `imageUrl` in `taskCards.json`. |
-| `dist/` | Committed build output. Regenerate with `npm run build` after changes. |
+- `src/data/taskCards.json` is the main course-content source of truth.
+- `src/components/` contains all visible UI components.
+- `src/hooks/useTaskProgress.js` owns task and challenge unlock logic.
+- `src/utils/copyToClipboard.js` handles clipboard fallback behavior.
+- `public/images/missions/` contains task-card images used by `imageUrl`.
+- `dist/` is generated by `npm run build` and currently exists in the repository.
+- `task_cards_for_codex.json` is a root-level duplicate-like file; do not treat it as the source of truth unless the user explicitly asks.
+
+Current image mapping:
+
+| Task | imageUrl |
+| --- | --- |
+| Task 1 | `/images/missions/mission_1_website_startup.png` |
+| Task 2 | `/images/missions/mission_2_mobile_connection.png` |
+| Task 3 | `/images/missions/mission_3_customize_website.png` |
+| Task 4 | `/images/missions/mission_4_interactive_features.png` |
 
 ---
 
 ## 4. Core Architecture
 
-### Rendering Flow
+Data flows from JSON into React components:
 
-```
-main.jsx
-  └─ <App />                          (layout shell: background gradients, header, page padding)
-       └─ <TaskBoard tasks={...} />   (view state machine)
-            │
-            ├─ [Board Mode]           isDetailMode === false
-            │    ├─ <TaskCard />      (selected task preview, left column)
-            │    └─ <MissionRoute />  (task route sidebar, right column)
-            │         └─ <RouteNode /> × 4
-            │
-            └─ [Detail Mode]          isDetailMode === true
-                 ├─ Back button
-                 └─ <TaskDetailPanel />
-                      ├─ <Checklist />          (acceptance criteria)
-                      ├─ <CopyableCodeBlock />   (fixed prompt)
-                      ├─ <ChallengeHint /> × 3  (per challenge)
-                      │    └─ <CopyableCodeBlock />
-                      └─ <HelpSystem />
-                           └─ <HelpErrorCard /> × N
-                                └─ <CopyableCodeBlock />
+```text
+src/data/taskCards.json
+  -> App.jsx
+  -> TaskBoard.jsx
+  -> TaskDetailPanel.jsx
+     -> Checklist.jsx
+     -> PromptSections.jsx
+     -> ChallengeHint.jsx
+     -> HelpSystem.jsx
 ```
 
-### Data Flow
+State and rendering responsibilities:
 
-```
-taskCards.json (static JSON)
-    │
-    ▼
-App.jsx  ──imports──►  courseData.taskCards (array)
-    │
-    ▼
-TaskBoard.jsx
-    │
-    ├──► useTaskProgress(tasks)        [hook — owns all mutable state]
-    │         │
-    │         ├── getTaskFlowStates()  → taskStates[]   (used by MissionRoute, TaskBoard logic)
-    │         ├── getAcceptanceState() → {checkedItems, isComplete, toggle}
-    │         └── getChallengeState()  → {checkedItems, isComplete, isUnlocked, toggle}
-    │
-    ├──► <MissionRoute taskStates={...} />   (read-only display)
-    ├──► <TaskCard task={...} />             (read-only display)
-    └──► <TaskDetailPanel taskProgress={taskProgress} />
-              │
-              ├── taskProgress.getAcceptanceState(task.id)
-              └── taskProgress.getChallengeState(task.id, challenge, index)
+- `taskCards.json` defines course title, task cards, prompts, checklists, challenges, help prompts, and schedule metadata.
+- `App.jsx` imports `taskCards.json`, renders the page shell, and passes `courseData.taskCards` into `TaskBoard`.
+- `TaskBoard.jsx` controls board mode vs detail mode, selected task, and uses `useTaskProgress`.
+- `useTaskProgress.js` tracks checklist state and computes task/challenge unlock state.
+- `TaskDetailPanel.jsx` renders one task's detail view: acceptance checklist, fixed prompts, advanced challenges, and help system.
+- `PromptSections.jsx` renders `promptSections` as separate copyable or instructional blocks.
+- `ChallengeHint.jsx` renders the expandable advanced challenge prompt.
+- `HelpSystem.jsx` renders common-error help prompts.
+- `CopyableCodeBlock.jsx` provides reusable prompt/code display and copy behavior.
+
+Board flow:
+
+```text
+TaskBoard
+  ├─ Board mode
+  │  ├─ TaskCard          # selected task preview
+  │  └─ MissionRoute      # route list and lock status
+  └─ Detail mode
+     └─ TaskDetailPanel   # selected task details
 ```
 
-### Key Architectural Decisions
-
-| Decision | Rationale |
-|----------|-----------|
-| No URL routing | Single-session workshop tool; back/forward browser buttons are not expected |
-| No localStorage | Progress intentionally resets on refresh; workshop is one session |
-| No React Context | Only one `useTaskProgress` hook instance; prop drilling is shallow (2 levels max) |
-| Static JSON data | All content in one file; no backend needed; easy to edit without touching components |
-| CSS-only animations | No animation library dependency; simpler bundle, fewer updates to maintain |
-
 ---
 
-## 5. Important Components
+## 5. Task Card Data Model
 
-### `TaskBoard.jsx` — View State Machine
+The main data file is:
 
-**Purpose:** Owns the `isDetailMode` boolean that switches between board view and detail view. Also manages `selectedTaskId` for which task is currently previewed.
+```text
+src/data/taskCards.json
+```
 
-**Dependencies:** `useTaskProgress`, `TaskCard`, `MissionRoute`, `TaskDetailPanel`
+Top-level fields:
 
-**Critical behavior:**
-- When returning to board from a completed task, auto-advances `selectedTaskId` to the next unlocked task
-- `selectedTask` falls back to `currentTaskState` if the selected task becomes locked
+| Field | Purpose |
+| --- | --- |
+| `courseTitle` | Main title shown in the page header |
+| `courseGoal` | Course-level description shown under the title |
+| `constraints` | Allowed and disallowed technologies for the learner-built website |
+| `antiScopeCreepReminder` | Correction prompt and forbidden technologies when AI goes beyond scope |
+| `stopAfterTaskReminder` | Global reminder that AI should stop after the current task goal |
+| `taskCards[]` | The four main task card objects |
+| `courseSchedule[]` | Schedule metadata; currently data-only |
 
-**Danger zone:** Do not add more view states here without understanding how `selectedTaskState` is derived — it has a double-fallback chain.
+Each `taskCards[]` item contains:
 
----
+| Field | Purpose |
+| --- | --- |
+| `id` | Stable unique ID used by progress state |
+| `stage` | Numeric course order |
+| `title` | Full task title |
+| `shortTitle` | Short label used in route/detail UI |
+| `description` | Task-card preview text |
+| `imageUrl` | Image path under `public/` |
+| `estimatedMinutes` | Displayed duration badge |
+| `minimumPassLine` | Short pass-line summary |
+| `goal` | Goal text in the detail panel |
+| `fixedPrompt` | Legacy/fallback prompt text |
+| `promptSections` | Current primary fixed-prompt display model |
+| `acceptanceCriteria` | Main task checklist |
+| `advancedChallenges` | Basic / Plus / Challenge extensions |
+| `commonErrors` | Help-system cards and help prompts |
 
-### `useTaskProgress.js` — Progression Engine
+### promptSections
 
-**Purpose:** The entire unlock logic, state tracking, and progression rules. This is the most important non-UI file.
+`promptSections` is now the primary way to display fixed prompts. `TaskDetailPanel.jsx` prefers `promptSections`; it falls back to `fixedPrompt` only when a task has no `promptSections`.
 
-**Returns three functions:**
+Do not update only `fixedPrompt` and assume the UI changed. If the task has `promptSections`, edit `promptSections` first.
 
-| Function | Returns | Used by |
-|----------|---------|---------|
-| `getTaskFlowStates()` | Array of task states with `isUnlocked`, `isComplete`, `isCurrentProgress` | `TaskBoard`, `MissionRoute` |
-| `getAcceptanceState(taskId)` | `{checkedItems, isComplete, toggle}` | `TaskDetailPanel` |
-| `getChallengeState(taskId, challenge, index)` | `{checkedItems, isComplete, isUnlocked, toggle}` | `TaskDetailPanel` |
+Supported section types:
 
-**Internal helpers:**
-- `areAllItemsChecked(items, checkedItems)` — core completion check
-- `getChallengeId(challenge, index)` — stable key for challenge progress storage
-- `getTaskProgress(task, progress)` — safe accessor with default empty state
+| Type | Shape | UI behavior |
+| --- | --- | --- |
+| `copyBlock` | `{ id, title, target, type, content, defaultCollapsed? }` | One copyable prompt block |
+| `quickReplies` | `{ id, title, target, type, items[] }` | Multiple follow-up prompts displayed as one merged block; one Copy button copies all items |
+| `instruction` | `{ id, title, target, type, content }` | Read-only instruction block; usually no Copy button |
 
-**Do not refactor** `getTaskFlowStates` without re-reading §6 carefully.
+Current behavior in `PromptSections.jsx`:
 
----
+- Sections render as collapsible dark panels.
+- `defaultCollapsed: true` starts a section closed.
+- `target` remains in JSON but is not displayed as a badge in the UI.
+- `quickReplies` are not split into separate cards. They render as a bullet list and copy all items at once.
+- Prompt text styling reuses constants exported from `CopyableCodeBlock.jsx`.
 
-### `TaskDetailPanel.jsx` — Task Detail View
+### advancedChallenges
 
-**Purpose:** Renders everything a student sees when they open a task card. Composes 6 different sub-components.
+Each challenge should contain:
 
-**Dependencies:** `Checklist`, `CopyableCodeBlock`, `ChallengeHint`, `HelpSystem`, `LockIcon`, `challengeUtils`
+- `level`: `Basic`, `Plus`, or `Challenge`
+- `title`
+- `goal`
+- `prompt`
+- `criteria`
+- optional `options[]` for Challenge variants
 
-**Sections rendered (in order):**
-1. Task header (shortTitle, goal)
-2. Acceptance Criteria → `<Checklist>`
-3. Fixed Prompt → `<CopyableCodeBlock>`
-4. Advanced Challenges → `<ChallengeHint>` per challenge
-5. Help System → `<HelpSystem>`
+The order matters because unlock logic expects Basic -> Plus -> Challenge.
 
-**Note:** `isHelpOpen` state resets to `false` whenever `task.id` changes (via `useEffect`).
+### commonErrors
 
----
+Each error card contains:
 
-### `CopyableCodeBlock.jsx` — Prompt Display
+- `id`
+- `symptom`
+- `possibleCause`
+- `helpPrompt`
 
-**Purpose:** Renders any text (prompts, code) with a copy button. Handles 3 copy states: `idle` → `copied` or `manual`.
-
-**States:**
-
-| State | UI |
-|-------|----|
-| `idle` | "Copy" button |
-| `copied` | "Copied" button (resets after 1400ms) |
-| `manual` | Shows `<textarea>` for long-press copy on non-HTTPS |
-
-**Used in:** `TaskDetailPanel` (fixed prompt), `ChallengeHint`, `HelpSystem`
-
----
-
-### `MissionRoute.jsx` — Task Route Sidebar
-
-**Purpose:** Right sidebar showing all 4 tasks as clickable nodes. Each `RouteNode` shows a status badge (LOCKED / AVAILABLE / CURRENT / COMPLETED) and locks interaction when not yet unlocked.
-
-**Visual states per node:**
-
-| Status | Border color | Background |
-|--------|-------------|------------|
-| LOCKED | white/10 | white/2.5%, opacity 45% |
-| AVAILABLE | cyan/28 | cyan/4.5% |
-| CURRENT | fuchsia/55 | fuchsia/7% |
-| COMPLETED | cyan/65 | cyan/9% |
-
----
-
-### `Checklist.jsx` — Reusable Checkbox List
-
-**Purpose:** Renders a list of checkbox items. When `disabled={true}`, all items are visually grayed out and non-interactive.
-
-**Checked state visual:** Line-through text + cyan border + cyan background.
-
-**Used in:** Acceptance criteria (TaskDetailPanel), challenge criteria (TaskDetailPanel via challenge loop)
+Help prompts may include technical debugging language. Checklist items should not.
 
 ---
 
 ## 6. State / Progress Logic
 
-> **⚠️ This section is critical. Do not modify `useTaskProgress.js` without fully understanding the rules below.**
+The progress engine is:
+
+```text
+src/hooks/useTaskProgress.js
+```
+
+It stores progress in React `useState`. There is no localStorage persistence. A page refresh resets progress.
 
 ### Task Unlock Chain
 
-Tasks unlock in a strict linear sequence:
+Tasks unlock linearly:
 
-```
-Task 1 ──[all acceptance criteria checked]──► Task 2 unlocks
-Task 2 ──[all acceptance criteria checked]──► Task 3 unlocks
-Task 3 ──[all acceptance criteria checked]──► Task 4 unlocks
-```
-
-Implementation: `getTaskFlowStates()` iterates tasks in order, maintaining a `dependencyChainComplete` boolean. Once it hits an incomplete task, all subsequent tasks remain locked.
-
-### Challenge Unlock Chain (within a task)
-
-```
-acceptanceCriteria all checked
-    └──► Basic challenge unlocks
-              └──► Plus challenge unlocks (after Basic criteria all checked)
-                        └──► Challenge challenge unlocks (after Plus criteria all checked)
+```text
+Task 1 acceptance complete -> Task 2 unlocks
+Task 2 acceptance complete -> Task 3 unlocks
+Task 3 acceptance complete -> Task 4 unlocks
 ```
 
-Implementation: `getChallengeState()` checks:
-1. `acceptanceComplete` — all acceptance criteria of the parent task are checked
-2. `previousComplete` — all criteria of the previous challenge are checked (or index === 0)
-3. `followsKnownOrder` — `CHALLENGE_ORDER = ['Basic', 'Plus', 'Challenge']` matches array position
+A task is complete only when all `acceptanceCriteria` items are checked.
 
-### Task Status Derivation
+Important functions:
 
-```javascript
-// In getTaskFlowStates():
-isUnlocked = dependencyChainComplete (at the time this task is processed)
-isComplete  = areAllItemsChecked(task.acceptanceCriteria, progress.acceptance)
+- `getAcceptanceState(taskId)` returns checked items, completion state, and toggle function for a task.
+- `getTaskFlowStates()` computes `isUnlocked`, `isComplete`, and `isCurrentProgress` for every task.
 
-// Derived after the map:
-isCurrentProgress = task is the first task that is (isUnlocked && !isComplete)
+### Challenge Unlock Chain
+
+Within a task:
+
+```text
+Main acceptance complete -> Basic unlocks
+Basic complete -> Plus unlocks
+Plus complete -> Challenge unlocks
 ```
 
-| Condition | Display Status |
-|-----------|---------------|
-| `!isUnlocked` | LOCKED |
-| `isUnlocked && !isComplete && isCurrentProgress` | CURRENT |
-| `isUnlocked && !isComplete && !isCurrentProgress` | AVAILABLE |
-| `isUnlocked && isComplete` | COMPLETED |
+Important functions and constants:
 
-### Progress State Shape
+- `CHALLENGE_ORDER = ['Basic', 'Plus', 'Challenge']`
+- `getChallengeId(challenge, index)`
+- `getChallengeState(taskId, challenge, index)`
+- `areAllItemsChecked(items, checkedItems)`
 
-```javascript
-// Internal state (React useState)
-progress = {
-  "task_1": {
-    acceptance: { 0: true, 1: false, 2: true },   // index → boolean
-    challenges: {
-      "Basic-0": { 0: true },                      // challengeId → index → boolean
-      "Plus-1":  {},
-    }
-  },
-  "task_2": { acceptance: {}, challenges: {} },
-  // ...
-}
-```
+High-risk area. Do not casually modify:
 
-**Challenge ID formula:** `getChallengeId(challenge, index)` = `"${challenge.level}-${index}"`
+- `CHALLENGE_ORDER`
+- `getChallengeId`
+- `getTaskFlowStates`
+- `getAcceptanceState`
+- `getChallengeState`
 
-### Progress Persistence
-
-**None.** All progress lives in `useState` inside `useTaskProgress`. A page refresh resets everything. This is intentional for a single-session workshop.
-
-**To add persistence:** Add `localStorage` read in the `useState` initializer and a `useEffect` to write back on every progress change.
+Changing these can break task locking, challenge progression, or stored progress keys.
 
 ---
 
-## 7. Styling Rules
+## 7. Prompt / Checklist Design Rules
 
-### Color System
+This section is part of the curriculum design. Keep it intact when editing task content.
 
-| Semantic Role | Color | Tailwind Token | Usage |
-|--------------|-------|---------------|-------|
-| Primary / interactive | Cyan | `cyan-*` | Buttons, borders, focus rings, task nodes |
-| Highlight / active | Fuchsia / Magenta | `fuchsia-*` | CURRENT task, advanced challenges |
-| Warning / help | Amber | `amber-*` | Help system, fixed prompt labels |
-| Background | Near-black | `#060912` | Global background (custom value) |
-| Surface | Dark navy | `slate-950` | Component backgrounds |
-| Text primary | White | `white` | Headings |
-| Text secondary | Slate | `slate-300` | Body text |
+### Prompt Design Rules
 
-### Visual Design Language
+- Prompts should be beginner-mimicable, especially `starter` prompts.
+- Starter prompts should not become long, complete SOP documents.
+- Starter prompts should ask AI to explain the purpose of each step.
+- Step-by-step guidance should tell the learner:
+  - where to operate
+  - what to do
+  - why this step matters
+  - what they should see after doing it
+- Task completion must stop the AI. AI should not invent the next lesson or feature.
+- The next step comes from the course page, not from AI improvisation.
+- Task 3 and Task 4 ChatGPT prompts are discussion prompts, not implementation prompts.
+- Codex prompts may ask Codex to edit files, but should still stop after the current task goal.
 
-- **Cyberpunk / sci-fi aesthetic** — dark background, neon accent colors, uppercase tracking labels
-- **Glassmorphism** — `backdrop-blur` + semi-transparent backgrounds on all panels
-- **Label style** — `text-xs font-semibold uppercase tracking-[0.24em]` for all section headers (NEVER lowercase)
-- **Border style** — all borders use `border-{color}/{opacity}` with low opacity (e.g., `border-cyan-300/20`)
+AI should not independently suggest or start:
 
-### 3D Card Effect (`TaskCard.jsx`)
+- Live Server
+- deployment
+- Vercel / Netlify
+- ngrok
+- API integration
+- database
+- login system
+- React / Vue / TypeScript
+- Tailwind / Bootstrap for the learner website
+- new packages beyond the task scope
+- the next task card
+- a Plus or Challenge task unless the learner copied that specific prompt from the course page
 
-The task card uses CSS custom properties updated on `mousemove`:
+### Checklist Design Rules
 
-```
---rotate-x  → perspective tilt (vertical axis)
---rotate-y  → perspective tilt (horizontal axis)
---shine-x   → radial gradient center X
---shine-y   → radial gradient center Y
-```
+Checklists are for absolute beginners. They must be confirmable by sight or simple operation.
 
-These are set via `card.style.setProperty()` — **not via React state** (avoids re-render on every mouse move). Do not convert to state.
+Good checklist items:
 
-### CSS Animations (`styles.css`)
+- The page shows `Hello My Website`.
+- The browser can open `http://localhost:3000`.
+- The phone can open `http://電腦IP:3000`.
+- The homepage has the learner's name or nickname.
+- A button changes text, color, or content after clicking.
+- The phone view is readable without horizontal scrolling.
 
-Two named keyframe animations are used:
+Do not put these in `acceptanceCriteria` or `advancedChallenges[].criteria`:
 
-| Class | Animation | Duration | Trigger |
-|-------|-----------|----------|---------|
-| `.challenge-unlocked` | `challenge-fade-in` | 320ms ease-out | Applied when challenge article becomes unlocked |
-| `.hint-panel` | `hint-panel-open` | 220ms ease-out | Applied to the hint panel div on expand |
+- Console
+- F12
+- Chrome DevTools
+- API
+- localStorage
+- 資料庫
+- React
+- Vue
+- TypeScript
+- Tailwind
+- Bootstrap
+- server.js
+- script.js
+- style.css
+- package.json
+- node_modules
+- 沒有使用
+- 不使用
+- 不修改
+- 只修改
+- 不新增
+- 不安裝
 
-**Do not rename these classes** — they are referenced directly in JSX classNames and are not Tailwind utilities.
+Those restrictions belong in prompts, not checklists.
 
-### Spacing Principles
-
-- Outer page padding: `px-5 py-8 sm:px-8 lg:px-10 lg:py-12`
-- Component internal padding: `p-4 md:p-5`
-- Section gaps: `space-y-5 md:space-y-6`
-- All spacing uses Tailwind scale (multiples of 4px)
-
-### Responsive Breakpoints
-
-| Breakpoint | Layout change |
-|------------|--------------|
-| Default (mobile) | Single column, detail mode always full-width |
-| `xl` (1280px+) | Board mode: 2-column grid (`1fr 420px`); sidebar becomes sticky |
+**Prompt is for AI constraints. Checklist is for beginner-visible outcomes.**
 
 ---
 
-## 8. Development Guide
+## 8. Important Components
 
-### Start Development
+### `App.jsx`
+
+Imports `courseData` from `src/data/taskCards.json`, renders the global dark background, course title, course goal, and `TaskBoard`.
+
+### `TaskBoard.jsx`
+
+Owns view switching:
+
+- board mode: task preview plus mission route
+- detail mode: selected task's `TaskDetailPanel`
+
+It also creates the `taskProgress` object by calling `useTaskProgress(tasks)`.
+
+When returning from a completed task, it may auto-select the next unlocked task.
+
+### `TaskCard.jsx`
+
+Renders the large task preview card:
+
+- task image
+- title
+- description
+- estimated minutes
+- minimum pass line
+
+It uses CSS custom properties for hover tilt and shine effects. Image loading falls back to an inline SVG placeholder if the image path fails.
+
+### `MissionRoute.jsx`
+
+Renders the right-side task route list. It displays each task as `LOCKED`, `AVAILABLE`, `CURRENT`, or `COMPLETED`.
+
+Locked tasks are disabled. The lock icon comes from `LockIcon.jsx`.
+
+### `TaskDetailPanel.jsx`
+
+Renders the detail page for one task:
+
+1. Acceptance Criteria via `Checklist`
+2. Fixed Prompt via `PromptSections` or `CopyableCodeBlock` fallback
+3. Advanced Challenges via challenge cards and `ChallengeHint`
+4. Help System via `HelpSystem`
+
+Important behavior:
+
+- Uses `promptSections` when present.
+- Falls back to `fixedPrompt` only when no `promptSections` exist.
+- Resets help-system open state when switching tasks.
+
+### `PromptSections.jsx`
+
+Renders `task.promptSections`.
+
+Current behavior:
+
+- `copyBlock` renders one copyable prompt.
+- `quickReplies` renders all `items` as one merged bullet-list block.
+- `quickReplies` has only one Copy button and copies all items at once.
+- `instruction` renders read-only explanatory text.
+- `target` is still present in data but no target badge is displayed.
+- Content styling imports prompt text classes from `CopyableCodeBlock.jsx`.
+
+### `CopyableCodeBlock.jsx`
+
+Reusable prompt/code display with copy button.
+
+It exports shared prompt text style constants:
+
+- `PROMPT_CONTENT_CLASS_NAME`
+- `PROMPT_TEXTAREA_CLASS_NAME`
+
+Clipboard behavior:
+
+1. Try `navigator.clipboard.writeText`.
+2. Fall back to a hidden textarea plus `document.execCommand('copy')`.
+3. If both fail, show manual copy mode with a textarea.
+
+This fallback matters because workshop environments may use LAN / non-HTTPS URLs.
+
+### `ChallengeHint.jsx`
+
+Renders the expandable "提示詞" button for advanced challenges. When opened, it uses `CopyableCodeBlock` with label `Challenge Prompt`.
+
+### `Checklist.jsx`
+
+Reusable checkbox list for:
+
+- task acceptance criteria
+- advanced challenge criteria
+
+Disabled checklists are visually muted and non-interactive.
+
+### `HelpSystem.jsx`
+
+Renders common errors. Each help card displays:
+
+- symptom
+- possible cause
+- copyable `helpPrompt`
+
+### `LockIcon.jsx`
+
+Small inline SVG lock icon used in locked route and challenge states.
+
+---
+
+## 9. Styling Rules
+
+Visual language:
+
+- dark sci-fi / cyberpunk interface
+- glassmorphism panels
+- cyan for primary route/progress/action states
+- fuchsia for current task and advanced challenge emphasis
+- amber for prompt/help surfaces
+- near-black global background `#060912`
+
+Important styling conventions:
+
+- Section labels use small uppercase text with wide tracking.
+- Panels use low-opacity borders and dark translucent backgrounds.
+- `challenge-unlocked` and `hint-panel` are custom CSS animation classes in `src/styles.css`.
+- Do not rename `.challenge-unlocked` or `.hint-panel` without updating JSX references.
+- Prompt block text should stay consistent between fixed prompts and advanced challenge prompts.
+- `PromptSections.jsx` and `CopyableCodeBlock.jsx` share prompt content classes.
+
+Do not add a UI library casually. The project currently does not use:
+
+- shadcn/ui
+- Framer Motion
+- lucide-react or another icon package
+- component libraries
+- routing libraries
+
+Prefer existing Tailwind class patterns and small local components.
+
+---
+
+## 10. Development Guide
+
+Install dependencies:
 
 ```bash
-npm install        # first time only
-npm run dev        # starts at http://0.0.0.0:5173 (all interfaces, accessible on LAN)
+npm install
 ```
 
-### Build for Production
+Start development server:
 
 ```bash
-npm run build      # outputs to dist/
-npm run preview    # preview the built output
+npm run dev
 ```
 
-> **Note:** The dev server listens on `0.0.0.0` intentionally, so students on the same Wi-Fi can access the interface from their phones.
+The dev server uses `--host 0.0.0.0`, so it can be accessed from other devices on the same network when firewall/network settings allow it.
 
----
+Build production files:
 
-### How to Add a New Task Card
-
-1. Open `src/data/taskCards.json`
-2. Append a new object to the `taskCards` array following this schema:
-
-```json
-{
-  "id": "task_5",
-  "title": "完整任務標題",
-  "shortTitle": "短標題（用於路線圖）",
-  "goal": "這個任務的目標是...",
-  "estimatedMinutes": 15,
-  "minimumPassLine": "最低通過標準",
-  "imageUrl": "/images/missions/mission_5_your_image.png",
-  "acceptanceCriteria": [
-    { "id": "ac_5_1", "label": "第一個驗收條件" },
-    { "id": "ac_5_2", "label": "第二個驗收條件" }
-  ],
-  "fixedPrompt": "給 Claude 的完整 prompt 文字...",
-  "advancedChallenges": [
-    {
-      "level": "Basic",
-      "title": "挑戰標題",
-      "goal": "挑戰說明",
-      "criteria": ["完成條件 1", "完成條件 2"],
-      "prompt": "給 Claude 的挑戰 prompt"
-    },
-    { "level": "Plus",      "title": "...", "goal": "...", "criteria": [], "prompt": "..." },
-    { "level": "Challenge", "title": "...", "goal": "...", "criteria": [], "prompt": "..." }
-  ],
-  "commonErrors": [
-    {
-      "id": "err_5_1",
-      "symptom": "學員看到什麼錯誤",
-      "possibleCause": "可能原因",
-      "helpPrompt": "給 Claude 的求救 prompt"
-    }
-  ]
-}
+```bash
+npm run build
 ```
 
-3. Add the corresponding image to `public/images/missions/`
-4. Run `npm run build` to regenerate `dist/`
+Preview production build:
 
-**No component changes needed** — all components are driven entirely by the JSON data.
-
----
-
-### How to Add a CSS Animation
-
-1. Open `src/styles.css`
-2. Add a `@keyframes` block and a class that applies it:
-
-```css
-.your-animation-class {
-  animation: your-animation-name 300ms ease-out;
-}
-
-@keyframes your-animation-name {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
+```bash
+npm run preview
 ```
 
-3. Apply the class in the relevant JSX component
+When changing content in `taskCards.json`, run:
 
----
-
-### How to Add a New Section to TaskDetailPanel
-
-1. Open `src/components/TaskDetailPanel.jsx`
-2. Add a new `<DetailSection title="Your Title">` block inside the `<div className="space-y-5 ...">` container
-3. If the section is large (>50 lines), create a new component file under `src/components/`
-
----
-
-### How to Modify Course Content Only
-
-| Goal | File to edit |
-|------|-------------|
-| Change task title / description / prompt | `src/data/taskCards.json` |
-| Add/remove acceptance criteria | `src/data/taskCards.json` → `acceptanceCriteria[]` |
-| Change challenge prompts | `src/data/taskCards.json` → `advancedChallenges[].prompt` |
-| Add a help error | `src/data/taskCards.json` → `commonErrors[]` |
-| Change course title / goal | `src/data/taskCards.json` → `courseTitle` / `courseGoal` |
-
----
-
-## 9. AI Collaboration Notes
-
-### Recommended Reading Order (Before Making Changes)
-
-```
-1. README.md (this file)
-2. src/data/taskCards.json         — understand the data shape
-3. src/hooks/useTaskProgress.js    — understand the state machine
-4. src/components/TaskBoard.jsx    — understand view routing
-5. src/components/TaskDetailPanel.jsx  — understand the detail view
-6. The specific component you need to change
+```bash
+npm run build
 ```
 
-### Risk Map
+This confirms JSON imports correctly and regenerates `dist/`.
 
-| File | Risk Level | Reason |
-|------|-----------|--------|
-| `src/hooks/useTaskProgress.js` | 🔴 HIGH | Core progression logic. Subtle unlock chain. A small change can break all task unlocking. |
-| `src/components/TaskBoard.jsx` | 🟡 MEDIUM | View routing + `selectedTaskState` fallback chain. Dual-fallback logic is easy to misread. |
-| `src/components/TaskDetailPanel.jsx` | 🟡 MEDIUM | Composes many sub-components. The challenge loop uses both `getChallengeState` and `getChallengePrompt`. |
-| `src/data/taskCards.json` | 🟡 MEDIUM | All content lives here. Schema must match what components expect. |
-| `src/styles.css` | 🟢 LOW | CSS only. Renaming `.challenge-unlocked` or `.hint-panel` will break animations. |
-| All other component files | 🟢 LOW | Single-responsibility, easy to read in isolation. |
+---
 
-### Coupling Map
+## 11. Common Editing Tasks
 
-```
-useTaskProgress.js
-    ↑ consumed by
-    TaskBoard.jsx  ──────────────────────► MissionRoute.jsx
-    TaskDetailPanel.jsx  ────────────────► Checklist.jsx
-                         ────────────────► CopyableCodeBlock.jsx
-                         ────────────────► ChallengeHint.jsx ──► CopyableCodeBlock.jsx
-                         ────────────────► HelpSystem.jsx ───► CopyableCodeBlock.jsx
-                         ────────────────► challengeUtils.js (getChallengePrompt)
-                         ────────────────► LockIcon.jsx
+### Change Task Content
 
-taskCards.json
-    ↑ consumed by
-    App.jsx ──► TaskBoard.jsx ──► (all components above)
+Edit:
+
+```text
+src/data/taskCards.json
 ```
 
-### Danger Zones — Do Not Change Without Full Understanding
+Usually no component changes are needed.
 
-1. **`CHALLENGE_ORDER` in `useTaskProgress.js`** — The array `['Basic', 'Plus', 'Challenge']` is used to validate that challenge level matches its array position. Reordering or renaming challenge levels in `taskCards.json` **must** be accompanied by updating this constant.
+For fixed prompt content, edit `promptSections` first. Keep `fixedPrompt` only as fallback compatibility.
 
-2. **`getChallengeId()` in `useTaskProgress.js`** — The formula `"${challenge.level}-${index}"` is the key used to store challenge progress. Changing this formula silently resets all challenge progress.
+### Change Prompt UI
 
-3. **`.challenge-unlocked` and `.hint-panel` CSS classes** — These are referenced directly in JSX. They are not Tailwind utilities. Do not rename or move them without updating both `styles.css` and the JSX.
+Edit:
 
-4. **`3D card style properties`** in `TaskCard.jsx` — `--rotate-x`, `--rotate-y`, `--shine-x`, `--shine-y` are CSS custom properties set imperatively via `card.style.setProperty()`. Do not convert to `useState` — doing so triggers a re-render on every mousemove event.
-
-5. **`task_cards_for_codex.json` at root** — This is an undocumented duplicate of `src/data/taskCards.json`. It appears to have been created for external AI tool use. **Do not treat it as the source of truth.** Always edit `src/data/taskCards.json`. See §11.
-
-### Modification Sequence (Safe Approach)
-
-When modifying the progression logic:
-1. Write down the exact behavior change you want in plain language
-2. Read `useTaskProgress.js` in full
-3. Identify which of the three returned functions needs changing
-4. Change only that function's logic
-5. Manually test: check, uncheck, re-check acceptance items; verify task unlock/lock
-6. Run `npm run build` to confirm no import errors
-
-When modifying visual design:
-1. Change Tailwind classes in the target component
-2. Verify no class is a custom CSS class from `styles.css` (check before removing)
-3. Check the change at multiple breakpoints (mobile / desktop)
-
----
-
-## 10. Future Expansion
-
-### Near-Term Enhancements
-
-| Feature | Complexity | Notes |
-|---------|-----------|-------|
-| **Progress persistence (localStorage)** | Low | Add to `useTaskProgress.js` only; no component changes needed |
-| **More task cards** | Low | Edit `taskCards.json` only; add image to `public/images/` |
-| **Instructor view (show all student progress)** | High | Requires backend or shared state (e.g., WebSocket, Firebase) |
-| **Pinned version dependencies** | Low | Replace `"latest"` with specific semver in `package.json` |
-
-### Medium-Term Expansion Ideas
-
-| Feature | Notes |
-|---------|-------|
-| **Mobile-first task guide** | The current UI is already responsive, but a dedicated mobile layout (bottom sheet instead of sidebar) would improve the student experience on phones |
-| **Tailscale / LAN sharing** | The dev server already listens on `0.0.0.0`; adding a QR code display with the local IP would reduce setup friction |
-| **Task timer** | Show elapsed time per task; track if `estimatedMinutes` was exceeded |
-| **Animated task unlock celebration** | Trigger a visual effect when a task transitions from LOCKED to AVAILABLE |
-
-### Longer-Term Possibilities
-
-| Feature | Complexity | Notes |
-|---------|-----------|-------|
-| **Multi-language support** | Medium | Currently hardcoded in Traditional Chinese; i18n layer needed |
-| **AI agent integration** | High | Pass student progress state to a Claude API call for dynamic hints |
-| **Multiplayer / class view** | High | Show all students' progress simultaneously (requires backend) |
-| **Teaching mode** | Medium | Instructor can force-unlock specific tasks for demo purposes |
-| **Custom workshop builder** | High | UI for non-technical instructors to create new task card sets without editing JSON |
-| **Offline PWA** | Low-Medium | Add a service worker; the app is already static and LAN-friendly |
-| **TypeScript migration** | Medium | Add types for `Task`, `Challenge`, `TaskProgress`, `TaskFlowState`; the data shapes are well-defined |
-
----
-
-## 11. Architecture Improvement Suggestions
-
-The following issues were observed during analysis. None affect current functionality, but are worth addressing before scaling the project.
-
-### Issue 1: Unpinned Dependencies (`package.json`)
-
-**Current state:** All six dependencies use `"latest"`:
-```json
-"react": "latest",
-"vite": "latest",
-"tailwindcss": "latest"
+```text
+src/components/PromptSections.jsx
+src/components/CopyableCodeBlock.jsx
 ```
 
-**Risk:** A breaking change in any upstream package will silently break the build on next `npm install`. Tailwind CSS 4 introduced significant breaking changes from v3; the same risk exists for future major versions.
+Keep prompt text styles shared so fixed prompts and challenge prompts look like the same kind of copyable content.
 
-**Recommendation:** Run `npm install` once to get the current `package-lock.json` versions, then pin each dependency to its resolved version (e.g., `"react": "^18.3.1"`).
+### Change Checklist Logic
+
+Edit data only if changing checklist labels.
+
+Edit `useTaskProgress.js` only if changing unlock behavior. This is high risk.
+
+### Change Task Images
+
+1. Put images in `public/images/missions/`.
+2. Update each task card's `imageUrl`.
+3. Confirm each path exists.
+4. Run `npm run build`.
+
+Current task order must stay:
+
+1. website startup
+2. mobile connection
+3. customize website
+4. interactive features
+
+### Add a New Task
+
+Adding a fifth task is possible but not purely data-only if the intended unlock flow or curriculum sequence changes. At minimum:
+
+1. Add a new object to `taskCards[]`.
+2. Add an image under `public/images/missions/`.
+3. Confirm acceptance criteria are beginner-visible.
+4. Confirm advanced challenges use Basic / Plus / Challenge order.
+5. Test task unlock flow manually.
+6. Run `npm run build`.
 
 ---
 
-### Issue 2: Duplicate JSON File (`task_cards_for_codex.json`)
+## 12. AI Collaboration Notes
 
-**Current state:** `task_cards_for_codex.json` at the project root is a copy of `src/data/taskCards.json`. There is no documented relationship between them.
+Before editing, read files in this order:
 
-**Risk:** If `taskCards.json` is updated but `task_cards_for_codex.json` is not, an AI assistant reading the root-level file will have stale data and give wrong advice.
+```text
+1. README.md
+2. src/data/taskCards.json
+3. src/hooks/useTaskProgress.js
+4. src/components/TaskBoard.jsx
+5. src/components/TaskDetailPanel.jsx
+6. The specific component or file you need to change
+```
 
-**Recommendation:** Either delete `task_cards_for_codex.json` and reference `src/data/taskCards.json` directly in AI tool configurations, or add a comment at the top of the file documenting that it must be kept in sync with `src/data/taskCards.json`.
+Safety rules:
 
----
+- Do not treat `task_cards_for_codex.json` as the source of truth.
+- Do not modify `useTaskProgress.js` unless the user explicitly asks for progression logic changes.
+- Do not change `promptSections` schema unless the UI is updated at the same time.
+- Do not remove `fixedPrompt`; it is still a fallback.
+- Do not put technical restrictions into checklist criteria.
+- Do not add React/Vue/TypeScript/Tailwind/Bootstrap instructions to the learner-built website prompts.
+- Do not introduce backend/API/database/auth/cloud deployment concepts into the course unless the user explicitly changes the curriculum.
+- Preserve the task order unless explicitly asked.
+- Keep Task 3 and Task 4 as ChatGPT discussion -> Codex implementation workflows.
+- After content or UI changes, run `npm run build` when feasible.
 
-### Issue 3: `dist/` Committed to Git
+High-risk files:
 
-**Current state:** The production build output is tracked in git.
+| File | Risk | Why |
+| --- | --- | --- |
+| `src/hooks/useTaskProgress.js` | High | Controls task and challenge unlock logic |
+| `src/data/taskCards.json` | Medium | Large curriculum data file; schema-sensitive |
+| `src/components/TaskDetailPanel.jsx` | Medium | Composes checklist, prompts, challenges, help system |
+| `src/components/PromptSections.jsx` | Medium | Prompt display behavior and copy behavior expectations |
+| `src/components/CopyableCodeBlock.jsx` | Medium | Shared prompt copy UI and fallback behavior |
+| `src/styles.css` | Low-Medium | Contains custom animation class names used by JSX |
 
-**Risk:** Every `npm run build` produces content-hashed filenames (e.g., `index-DCVfpOGn.js`). Git diffs become noisy with binary image files and large JS/CSS bundles.
+Final reminder:
 
-**Recommendation:** Add `dist/` to `.gitignore` if the project is deployed via CI/CD. Keep it committed only if the deployment method is "serve directly from the git repository" (e.g., GitHub Pages from the `dist/` folder).
-
----
-
-### Issue 4: Slight Logic Duplication in `useTaskProgress.js`
-
-**Current state:** The acceptance state object (checkedItems, isComplete, toggle) is constructed in two places: `getAcceptanceState()` (line ~63) and inside `getTaskFlowStates()` (line ~112). They are nearly identical.
-
-**Risk:** Low — both read from the same `progress` state. But if the shape of the acceptance state object changes, both sites must be updated.
-
-**Recommendation:** This is a deliberate trade-off (calling `getAcceptanceState` inside `getTaskFlowStates` would work but adds indirection). Only fix if `getAcceptanceState`'s shape needs to change.
-
----
-
-*This README was generated as an AI onboarding document. Last updated: 2026-05-17.*
+```text
+Prompt = constraints and instructions for AI.
+Checklist = visible outcomes a beginner can verify.
+Progression = controlled by the course page, not by AI improvisation.
+```

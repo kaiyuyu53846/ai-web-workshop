@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { copyToClipboard } from '../utils/copyToClipboard.js';
 
+export const PROMPT_CONTENT_CLASS_NAME =
+  'font-mono text-xs font-normal leading-6 tracking-normal text-slate-200';
+
+export const PROMPT_TEXTAREA_CLASS_NAME =
+  'font-mono text-xs font-normal leading-6 tracking-normal text-slate-100';
+
 function CopyIcon() {
   return (
     <svg
@@ -78,12 +84,12 @@ function CopyableCodeBlock({ label = 'Prompt', value, maxHeight = 'max-h-56' }) 
             ref={manualTextareaRef}
             readOnly
             value={value}
-            className={`${maxHeight} min-h-44 w-full resize-y overflow-auto border border-amber-200/25 bg-black/35 p-3 text-xs leading-6 text-slate-100 outline-none selection:bg-cyan-300/35`}
+            className={`${maxHeight} ${PROMPT_TEXTAREA_CLASS_NAME} min-h-44 w-full resize-y overflow-auto border border-amber-200/25 bg-black/35 p-3 outline-none selection:bg-cyan-300/35`}
           />
         </div>
       ) : (
         <pre
-          className={`${maxHeight} max-w-full overflow-auto whitespace-pre-wrap p-3 text-xs leading-6 text-slate-200`}
+          className={`${maxHeight} ${PROMPT_CONTENT_CLASS_NAME} max-w-full overflow-auto whitespace-pre-wrap p-3`}
         >
           {value}
         </pre>
